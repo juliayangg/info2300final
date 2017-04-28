@@ -1,6 +1,11 @@
+/* RED: #b31b1b
+   GRAY: #e6e6e6
+*/
+
 body{
     margin:0;
     padding:0;
+    font-family: sans-serif;
 }
 .container {
     overflow: hidden;
@@ -59,4 +64,50 @@ body{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/***** SIDEBAR *****/
+.sidebar {
+    height: 100%;
+    width: 13%;
+    display: inline-block;
+    background-color: #e6e6e6;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 30%;
+    padding-right: 40%;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #101010;
+}
+
+.sidebar ul li a:hover {
+    color: #b31b1b;
+    transition: 700ms;
+}
+
+.sidebar ul li a:visited {
+    border-bottom: 1px solid #b31b1b;
+    padding-bottom: 2px;
+}
+
+/***** EBOARD *****/
+#eboard {
+    display: inline-block;
+}
+
+#eboard img {
+    width: 200px;
+    height: 200px;
+}
+
+#eboard img:hover {
+    opacity: 0.7;
 }
