@@ -4,12 +4,12 @@ body{
 }
 .container {
     overflow: hidden;
-    background-color: #333;
+    background-color: #b31b1b;
     font-family: Arial;
 }
 
 .container a {
-    float: left;
+    float: right;
     font-size: 16px;
     color: white;
     text-align: center;
@@ -18,7 +18,7 @@ body{
 }
 
 .dropdown {
-    float: left;
+    float: right;
     overflow: hidden;
 }
 
