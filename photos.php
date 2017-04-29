@@ -11,12 +11,6 @@
 </head>
 
 	<?php include "nav.html" ?>
-
-
 <body>
-	<div id="logoDiv">
-		<img src="img/cme.png" id="logo" alt="CME Logo" width="15%">
-		<div class="greyContainer"><a href="index.php">Cornell Media & Entertainment</a></div>
-	</div>
+	Picture displays here
 </body>
-
