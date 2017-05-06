@@ -1,7 +1,7 @@
 <?php
-if(!isset($_SESSION)) {
-    session_start(); 
-}
+    if(!isset($_SESSION)) {
+        session_start(); 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +14,9 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
-        require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
-        add_versioned_file( 'css/styles.css', 'Style' );
+            require_once "includes/functions.php";
+            //add_versioned_file( 'js/scripts.js', 'JavaScript' );
+            add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
     <?php include 'includes/nav.php';?>
