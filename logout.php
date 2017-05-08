@@ -32,10 +32,10 @@
             <?php
                 if ( $olduser ) {
                     print("<p>Thanks for using our page, $olduser!</p>");
-                    print("<p>Return to our <a href='login.php'>login page</a></p>");
+                    print("<p>Return to our <a href='login.php'>login page</a>.</p>");
                 } else {
                     print("<p>You haven't logged in.</p>");
-                    print("<p>Go to our <a href='login.php'>login page</a></p>");
+                    print("<p>Go to our <a href='login.php'>login page</a>.</p>");
                 }
             ?>
         </div>
