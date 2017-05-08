@@ -18,10 +18,14 @@ if(!isset($_SESSION)) {
         //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
+        <script src="scripts/main.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     </head>
     
     <?php include 'includes/nav.php';?>
-     <?php
+
+    <?php
     if (!isset($_SESSION['logged_user_by_sql']) ){
             print('<p> You are not logged in.</p>');
             print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
@@ -29,27 +33,118 @@ if(!isset($_SESSION)) {
     }
     ?>
 
+    <?php
+    $positions = array("President", "VP", "Finance", "Multimedia", "Operations");
+
+    //displays all of the positions
+    function displayPosition() {
+        global $positions;
+        foreach ($positions as $pos){
+            echo '<input type="radio" name="position" value="'.$pos.'">' .$pos.'<br>';
+        }
+    }
+
+    ?>
     <body>
         <div class="messages">
             <h2>Add a New Member</h2>
             <form action="addmember.php" method='POST' enctype="multipart/form-data">
-                <p>
-                    <label for="newphoto">Select a Profile Picture to upload</label>
-                    <input id="newphoto" type="file" name="newphoto"><br><br>
-                    Name: <input type="text" name="utitle" style="font-size:12pt;" placeholder="Member's Name"><br><br>
-                    Graduation Year: <input type="text" name="uyear" style="font-size:12pt;" placeholder="Graduation Year"><br><br>
-                    Major: <input type="text" name="uphotographer" style="font-size:12pt;" placeholder="Member's major"><br><br>
-                    Position: <br>
-                    <input type="checkbox" name="position" value="President">President<br>
-                    <input type="checkbox" name="position" value="VP">Vice President<br>
-                    <input type="checkbox" name="position" value="Finance">Finance<br> 
-                    <input type="checkbox" name="position" value="Multimedia">Multimedia<br>
-                    <input type="checkbox" name="position" value="Operations">Operations
-                    <br><br>
-                    <input type="submit" name="intake" value="Add a Member">
-                    </p>
-                </form>
+                <table class="center">
+                    <tr><td><label for="newphoto">Select a Profile Picture:</label></td></tr>
+                    <tr><td><input id="newphoto" type="file" name="newphoto"></td></tr>
+                    
+                    <tr><td>Name: <input type="text" name="uname" onchange="validName('namemsg', this.value);" placeholder="Member's Name"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="namemsg"></td></tr>
 
+                    <tr><td>Graduation Year: <input type="text" name="uyear" onchange="validYear('gradmsg', this.value);" placeholder="Graduation Year"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="gradmsg"></td></tr>
+
+                    <tr><td>Major: <input type="text" name="umajor" onchange="validText('majormsg', this.value);" placeholder="Member's major"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="majormsg"></td></tr>
+
+                   <tr><td> Position: <br><?php displayPosition(); ?></td></tr>
+                </table>
+                <input type="submit" class="button" name="intake" value="Add Member">
+                </form>
+            <?php
+
+            if(isset($_POST["intake"])){
+                if (!isset($_FILES['newphoto'])){
+                    echo '<p>Please select one photo to upload</p>';
+                    exit();
+                }
+                else {
+                    $name = filter_input( INPUT_POST, 'uname', FILTER_SANITIZE_STRING );
+                    if (empty($name)){
+                        $nameErr = "name"; 
+                    }
+
+                    $year = filter_input( INPUT_POST, 'uyear', FILTER_SANITIZE_NUMBER_INT);
+                    if ($year < 2010 || $year > 2018 ){
+                        $yearErr = "year";
+                    }
+
+                    $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
+                    if (empty($major)){
+                        $majorErr = "major";
+                    }
+
+                    $pos = $_POST['position'];
+                    if (empty($pos)){
+                        $posErr = "position";
+                    } else {
+                        $exists = false; 
+                        foreach ($positions as $position){
+                            if ($position === $pos){
+                                $exists = true; 
+                            }
+                        }
+
+                        if (!$exists){
+                            $posErr = "position";
+                        }
+                    }
+
+                    //uploaded photo
+                    print '<pre style="display:none;">' . print_r( $_FILES, true ) . '</pre>';
+                    if ( !empty( $_FILES[ 'newphoto' ]) ) {
+                        $newPhoto = $_FILES[ 'newphoto' ];
+                        $originalName = $newPhoto[ 'name' ];
+                        if ( $newPhoto[ 'error' ] == 0 ) {
+                            $tempName = $newPhoto[ 'tmp_name' ];
+                            move_uploaded_file( $tempName, 'img/eboard/'.$originalName);
+                            $_SESSION['photos'][] = $originalName;
+                        } else{
+                            $photoErr = 'photo';
+                        }
+                    }
+
+                    if ($nameErr || $yearErr || $majorErr || $posErr || $photoErr ){
+                         echo "<p class='error'>Submission unsuccessful. The following are invalid: $nameErr $yearErr $majorErr $posErr $photoErr </p>";                       
+                    }
+                    else if ($name && $year && $major && $position){
+
+                        $picpath = "img/eboard/$originalName";
+
+                        $insertMember = "INSERT INTO Members VALUES (NULL, '$name', $year, '1', '$major', '$pos', '$picpath')";
+                        print $insertMember; 
+                        $result = $mysqli->query($insertMember);
+                                if (!$result) {
+                                    print($mysqli->error);
+                                    exit();
+                                }
+                        echo "<p>Submission successful. View your albums <a href='photos.php?type=default'>here</a>";
+                    }
+
+                }
+                
+
+            }
+
+            ?>
             <!-- Psuedocode:
             Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality"
 

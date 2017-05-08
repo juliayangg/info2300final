@@ -308,6 +308,10 @@ table.center {
     text-align:left;
 }
 
+table td{
+    padding:5px;
+}
+
 
 .button {
   text-align: center;

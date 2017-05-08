@@ -39,11 +39,10 @@ if(!isset($_SESSION)) {
             <h2>Create a New Album</h2>
             <form action="addalbum.php" method='POST' enctype="multipart/form-data">
                 <table class="center">
-                    <tr><td>Year: <input type="text" name="ayear" onchange="validYear(this.value);" placeholder="A four-digit number"></td>
+                    <tr><td>Year: <input type="text" name="ayear" onchange="validYear('yearmsg', this.value);" placeholder="A four-digit number"></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="yearmsg"></td>
                     </tr>
-
 
                     <br><br>
                     <tr><td>Participant List: <input type="text" name="alist" onchange="validText('participantmsg', this.value);" placeholder="List of participants"><br><br></td>
@@ -96,7 +95,7 @@ if(!isset($_SESSION)) {
                      }
 
                     $feedback = $_POST['afeedback'];
-                    if (empty($feedback) || !preg_match('/^[a-zA-Z0-9-,\"\!\& ]+$/',$feedback)){
+                    if (empty($feedback) || !preg_match('/^[a-zA-Z0-9-,.\"\!\& ]+$/',$feedback)){
                          $feedbackErr = "feedback";
                      }
 

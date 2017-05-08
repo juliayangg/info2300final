@@ -4,15 +4,15 @@
 // 	-album year
 // 	-member year
 // 
-function validYear(year){
+function validYear(err, year){
 	if (year == "") {
-		msg("yearmsg","Required");
+		msg(err,"Required");
 		return false;
 	} else if (/^[0-9]{4}$/.test(year)) {
-		msg("yearmsg","");
+		msg(err,"");
 		return true;
 	} else {
-		msg("yearmsg","Year must be 4 numbers");
+		msg(err,"Year must be 4 numbers");
 		return false;
 	}
 	return true;
@@ -29,7 +29,7 @@ function validText(err, input){
 		msg(err, "Required");
 		return false;
 	}
-	else if (/^[a-zA-Z0-9_]*$/.test(input)){
+	else if (/^[a-zA-Z_]*$/.test(input)){
 		msg(err, "");
 		return true;
 	}
