@@ -89,6 +89,7 @@ h1{
     font-weight: 900;
     font-size: 250%;
     font-family: 'Raleway', sans-serif;
+    text-shadow: 1px, 1px, #e6e6e6;
 }
 
 .greyContainer{
@@ -285,45 +286,29 @@ h1{
     color:#b31b1b;
     font-weight: bold;
 }
-.textbeside{
-    width: 80%;
-    margin-left: 15%;
-}
 
-.textbeside h2{
-    font-family: 'Montserrat', sans-serif;
+
+
+form {
     text-align: center;
-    font-weight: 900;
 }
 
-.textbeside h3{
-    font-family: 'Raleway', sans-serif;
-    font-weight: 900;
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+    text-align:left;
 }
 
-.textbeside p{
-    font-family: 'Raleway', sans-serif;
-    text-indent: 50px;
-    line-height: 150%;
-}
 
-table{
-    text-align: center;
-    margin: auto;
-}
+.button {
+  text-align: center;
+  border:1px solid #858585;
+  padding:7px 10px;
+  font-size:12px;
+  background-color:#ffffff;
+  font-family:Raleway;
+  text-align: center;
+  text-decoration: none;
+  color:black;
 
-#map{
-    width:40%;
-    height:400px;
-    margin:auto;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-}
-
-.search{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    float:right;
-    margin-right: 5%;
-    font-family: 'Raleway', sans-serif;
 }
