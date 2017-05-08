@@ -2,7 +2,7 @@
 
 define('DB_HOST', 'localhost');
 
-define('DB_USER', 'fp-kje');    
+define('DB_USER', 'fp_kje');    
  
 define('DB_PASSWORD', 'info2300'); 
 

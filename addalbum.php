@@ -39,9 +39,6 @@ if(!isset($_SESSION)) {
             <h2>Create a New Album</h2>
             <form action="addalbum.php" method='POST' enctype="multipart/form-data">
                 <table class="center">
-                    <?
-                    $yearErr =  $participantErr = $venueErr = ""; 
-                    ?>
                     <tr><td>Year: <input type="text" name="ayear" onchange="validYear(this.value);" placeholder="A four-digit number"></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="yearmsg"></td>

@@ -26,7 +26,7 @@ used for validating
 	- eventName, event description, event history*/
 function validText(err, input){
 	if (input == ""){
-		msg(error, "Required");
+		msg(err, "Required");
 		return false;
 	}
 	else if (/^[a-zA-Z0-9_]*$/.test(input)){
@@ -43,7 +43,7 @@ function validText(err, input){
 //validating feedback which may contain .,"!*&$%#
 function validFeedback(err,input){
 	if (input == ""){
-		msg(error, "Required");
+		msg(err, "Required");
 		return false;
 	}
 	else if(/^[A-Za-z0-9_~\-,!\"\&\(\) ]+$/.test(input)){
@@ -58,14 +58,14 @@ function validFeedback(err,input){
 } 
 
 // add Member 
-function validingName (err, input) {
+function validName(err, input) {
 	if (input == ""){
-		msg(error, "Required");
-		return false
+		msg(err, "Required");
+		return false;
 	}
-	else if (/^[a-zA-Z]+[-a-zA-Z]$/.test(input)){
-		//set err to none
-		return true
+	else if (/^[a-zA-Z]$/.test(input)){
+		msg(err, "");
+		return true;
 	}
 	else {
 		msg(err, "Must be valid name");
