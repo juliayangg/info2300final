@@ -329,3 +329,7 @@ table td{
 input[type=text]{
     font-size:12pt;
 }
+
+input[type=password]{
+    font-size:12pt;
+}
