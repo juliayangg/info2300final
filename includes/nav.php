@@ -12,6 +12,7 @@
         print("<a href=editmember.php>Edit Member</a>");
         print("<a href=changepassword.php>Change Password</a>");
         print("<a href=createaccount.php>Create New Account</a>");
+        print("<a href=logout.php>Logout</a>");
         print("</div></div>");
     }
     ?>
