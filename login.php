@@ -74,9 +74,8 @@ if(!isset($_SESSION)) {
                     $mysqli->close();
 
                     if ( isset($_SESSION['logged_user_by_sql'] ) ) {
-                        print("<p>Congratulations, $db_username. You now have the administrative authority upon this web. <p>");
-                        print("<p><a href='admin.php'>Explore Administrative Functionalities</a><br/></p>");
-                        print("<p><a href='logout.php'>Logout</a><br/></p>");
+                        echo '<script>window.location="add.php"</script>';
+
                     } else {
                         echo '<p>We cannot find matching username and password you entered</p>';
                         echo '<p>Please check your input and<a href="login.php"> try again.</a></p>';

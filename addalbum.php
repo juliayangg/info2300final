@@ -26,6 +26,13 @@ if(!isset($_SESSION)) {
     </head>
     
     <?php include 'includes/nav.php';?>
+    <?php
+    if (!isset($_SESSION['logged_user_by_sql']) ){
+            print('<p> You are not logged in.</p>');
+            print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
+            exit();
+    }
+    ?>
     <body>
    
         <div class="messages">
@@ -35,25 +42,25 @@ if(!isset($_SESSION)) {
                     <?
                     $yearErr =  $participantErr = $venueErr = ""; 
                     ?>
-                    <tr><td>Year: <input type="text" name="ayear" style="font-size:12pt;" onchange="validYear(this.value);" placeholder="A four-digit number"></td>
+                    <tr><td>Year: <input type="text" name="ayear" onchange="validYear(this.value);" placeholder="A four-digit number"></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="yearmsg"></td>
                     </tr>
 
 
                     <br><br>
-                    <tr><td>Participant List: <input type="text" name="alist" style="font-size:12pt;" onchange="validText('participantmsg', this.value);" placeholder="List of participants"><br><br></td>
+                    <tr><td>Participant List: <input type="text" name="alist" onchange="validText('participantmsg', this.value);" placeholder="List of participants"><br><br></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="participantmsg"></td>
                     </tr>
 
-                   <tr><td> Feedback: <input type="text" name="afeedback" style="font-size:12pt;" onchange="validFeedback('feedbackErr', this.value);" placeholder="Collection of feedback"><br><br></td>
+                   <tr><td> Feedback: <input type="text" name="afeedback" onchange="validFeedback('feedbackErr', this.value);" placeholder="Collection of feedback"><br><br></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="feedbackErr"></td>
                    </tr>
 
                    <tr><td>
-                    Venue: <input type="text" name="avenue" style="font-size:12pt;" onchange="validText('venuemsg', this.value);" placeholder="Where it took place"><br><br></td>
+                    Venue: <input type="text" name="avenue" onchange="validText('venuemsg', this.value);" placeholder="Where it took place"><br><br></td>
                     <td><span class="error">*</span></td>
                     <td class="error" id="venuemsg"></td>
                 </tr>

@@ -21,16 +21,33 @@ if(!isset($_SESSION)) {
     </head>
     
     <?php include 'includes/nav.php';?>
+    <?php
+    if (!isset($_SESSION['logged_user_by_sql']) ){
+            print('<p> You are not logged in.</p>');
+            print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
+            exit();
+    }
+    ?>
+
     <body>
         <div class="messages">
             <h2>Add a New Event</h2>
             <form action="addevent.php" method='POST'>
-                <p>
-                    Name: <input type="text" name="ayear" style="font-size:12pt;" placeholder="Event Name"><br><br>
-                    History: <input type="text" name="alist" style="font-size:12pt;" placeholder="History of Event"><br><br>
-                    Description: <input type="text" name="alist" style="font-size:12pt;" placeholder="Event Description"><br><br>                    
-                    <input type="submit" name="add" value="Add an Event">
-                </p>
+                 <table class="center">
+                    <tr><td>Name: <input type="text" name="ayear" placeholder="Event Name"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="namemsg"></td>
+                    </tr>
+                    <tr><td>History: <input type="text" name="alist" placeholder="History of Event"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="historymsg"></td>
+                    </tr>
+                    <tr><td>Description: <input type="text" name="alist" placeholder="Event Description"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="descriptionmsg"></td>
+                    </tr>                
+                </table>
+                <input type="submit" class="button" name="add" value="Add an Event">
             </form>
             <!-- Psuedocode: 
             Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality"

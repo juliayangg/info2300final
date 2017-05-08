@@ -21,6 +21,14 @@ if(!isset($_SESSION)) {
     </head>
     
     <?php include 'includes/nav.php';?>
+     <?php
+    if (!isset($_SESSION['logged_user_by_sql']) ){
+            print('<p> You are not logged in.</p>');
+            print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
+            exit();
+    }
+    ?>
+
     <body>
         <div class="messages">
             <h2>Add a New Member</h2>

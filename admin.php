@@ -21,14 +21,22 @@ if(!isset($_SESSION)) {
     </head>
     
     <?php include 'includes/nav.php';?>
+    <?php
+    if (!isset($_SESSION['logged_user_by_sql']) ){
+            print('<p> You are not logged in.</p>');
+            print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
+            exit();
+    }
+    ?>
+            
     <body>
         <div class="text">
-            <!-- Psuedocode:
-            Check the loggin status. If not logged in, display message of "you need to log in to use this functionality. Else, display:"
-            -->
+
             <h3>Welcome!</h3>
             <h3>You can now use the following functionalities.</h3>
             <h4><a href="uploadphoto.php">Upload Photos</a> | <a href="addalbum.php">Add Album</a> | <a href="addevent.php">Add Event</a> | <a href="addmember.php">Add Member</a> | <a href="editmember.php">Edit Member</a> | <a href="changepassword.php">Change Password</a> | <a href="createaccount.php"> Create Account</a></h4>
+
+            <h4><a href="logout.php">Logout</a></h4>
         </div>
 
     </body>

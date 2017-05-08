@@ -6,7 +6,17 @@ body{
     margin:0;
     padding:0;
     margin-bottom:5%;
-    font: "Raleway";
+    font-family: "Raleway";
+}
+
+p{
+    text-align: center;
+}
+
+p a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #a3a3a3;
 }
 
 .container {
@@ -23,7 +33,7 @@ body{
 .container a {
     float: right;
     font-size: 16px;
-    color: #e6e6e6;
+    color: #f8f8f8;
     text-align: center;
     padding: 20px 30px;
     font-family: 'Montserrat';
@@ -288,8 +298,6 @@ h1{
     font-weight: bold;
 }
 
-
-
 form {
     text-align: center;
 }
@@ -312,4 +320,8 @@ table.center {
   text-decoration: none;
   color:black;
 
+}
+
+input[type=text]{
+    font-size:12pt;
 }
