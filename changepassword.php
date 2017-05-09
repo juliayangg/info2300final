@@ -23,7 +23,15 @@ if(!isset($_SESSION)) {
     <?php include 'includes/nav.php';?>
     <body>
         <div class="messages">
-            <p>See Psuedocode comments for now.</p>
+            <h2>Change password</h2>
+            <form action="createaccount.php" method='POST' enctype="multipart/form-data">
+                <table class="center">
+                    <tr><td>Username: <input type="text" name="username"></td>
+                    <tr><td>Old Password: <input type="opassword" name="password"></td>
+                    <tr><td>New Password: <input type="npassword" name="password"></td>
+                </table>
+                <input type="submit" class="button" name="create" value="Add account">
+            </form>
         </div>
         <!-- Psuedocode:
         Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality". 

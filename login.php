@@ -74,7 +74,7 @@ if(!isset($_SESSION)) {
                     $mysqli->close();
 
                     if ( isset($_SESSION['logged_user_by_sql'] ) ) {
-                        echo '<script>window.location="add.php"</script>';
+                        echo '<script>window.location="admin.php"</script>';
 
                     } else {
                         echo '<p>We cannot find matching username and password you entered</p>';
