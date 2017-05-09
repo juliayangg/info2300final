@@ -88,16 +88,7 @@ if(!isset($_SESSION)) {
                 }
             }
 
-            ?>
-            <!-- Psuedocode: 
-            Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality"
-
-            Step 1: if isset $_POST['add'], and check all the inputs (e.g. all inputs have to be text). If not, print("please check your input and try again")
-            
-            Step 2: else (which means all inputs validate), insert all information into events table as entered (with event_id as default). 
-
-            Step 3: print out success message and a href to view all albums (href=events.php?id=default). 
-            -->           
+            ?>         
         </div>
     </body>
 </html>

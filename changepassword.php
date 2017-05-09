@@ -107,19 +107,6 @@ if(!isset($_SESSION)) {
                  }
             }
         }
-        ?>
-        <!-- Psuedocode:
-        Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality". 
-
-        Step 1: If logged in, get the login username $current_user = $_SESSION['logged_user_by_sql']. Display the form that allow users to enter old password, new password, and another textbox to double check the new password. The form will also include javascript to show interactive message.
-
-        Step 2: check if the submit button is clicked. If so, get two values entered and validate them. Check: if all inputs are text, if old password matches the password on account, and also if two new passwords entered match. 
-
-        Step 3: hash the new password by password_hash(input, PASSWORD_DEFAULT)
-            
-        Step 4: execute UPDATE login SET ‘hashed_password’ = $hashed_new_password WHERE username = $current_user
-
-        Step 5: display success message, or otherwise display error message.
-        -->           
+        ?>        
     </body>
 </html>

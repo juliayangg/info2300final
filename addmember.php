@@ -144,26 +144,7 @@ if(!isset($_SESSION)) {
 
             }
 
-            ?>
-            <!-- Psuedocode:
-            Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality"
-
-            Step 1: if isset $_POST['intake'], and !isset $_FILES['newphotos'], print("please select ONE image to upload")
-            
-            Step 2: else (which means isset $_FILES['newphotos']), check if this file is a picture file (jpg,png,etc.). If not, print out error message and quit. 
-            
-            Step 3: Validate all other input, such as name must be a text, position must be in the list [President, VP, Finance, Operations]. If not, print error message and quit.
-
-            Step 4: $originalName = $newPhotos['name'] and if $newPhotos['error'] == 0, then $tempName = $newPhotos['tmp_name']
-            
-            Step 4: move_uploaded_file( $tempName, "images/$originalName" );
-						$_SESSION['photos'][] = $originalName; 
-                        if failed, print out failuer message. 
-            
-            Step 5: Insert these information into photos table with default member_id and active as TRUE (users can change this status in editmember page). If failed, print out failuer message. 
-            
-            Step 6: print out success message and a href to view all members (href=photos.php?type=default). 
-            -->           
+            ?>        
         </div>
     </body>
 </html>

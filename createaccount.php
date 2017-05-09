@@ -93,19 +93,6 @@ if(!isset($_SESSION)) {
             }   
         }
 
-        ?>
-        <!-- Psuedocode:
-        Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality". If logged in, display the form that allow users to enter new username and password. The form will also include javascript to show interactive message.
-
-        Step 1: check if the submit button is clicked. If so, get two values entered and validate them. 
-            
-        Step 2: Check if there is duplication of username in the database. 
-
-        Step 3: hash the password by password_hash(input, PASSWORD_DEFAULT)
-            
-        Step 4: execute INSERT INTO login (‘username’, ‘hashed_password’) VALUES (username, hashed_password)
-
-        Step 5: display success message, or otherwise display error message. 
-        -->           
+        ?>        
     </body>
 </html>

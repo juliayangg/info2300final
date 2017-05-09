@@ -125,14 +125,7 @@ if(!isset($_SESSION)) {
                     }
             }
 
-            ?>
-            <!-- Psuedocode:    
-            Step 1: if isset $_POST['create'], and check all the inputs (e.g. year has to be a four-digit number and feedback must be text). If not, print("please check your input and try again")
-            
-            Step 2: else (which means all input validates), insert all information into albums table as entered (with album_id as default). 
-
-            Step 3: print out success message and a href to view all albums (href=photos.php?sort=albums). 
-            -->           
+            ?>   
         </div>
     </body>
 </html>
