@@ -58,6 +58,7 @@ if(!isset($_SESSION)) {
         </div>
 
         <?php
+        $usernameErr = $passwordErr = "";
 
         if(isset($_POST["create"])){
             $username = filter_input( INPUT_POST, 'username', FILTER_SANITIZE_STRING );
