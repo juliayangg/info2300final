@@ -34,23 +34,49 @@ if(!isset($_SESSION)) {
             
             $query = "SELECT * FROM events";
             $result = $mysqli->query($query);
-            
+            $pageContent = '';
+
             echo '<ul>';
-            if ($id == 'default'){
+            if ($id == 'default') {
                 echo '<li class="selected"><a href="events.php?id=default">All Events</a></li>';
-            }else{
+            } else {
                 echo '<li><a href="events.php?id=default">All Events</a></li>';
             }
             while ($row = $result->fetch_assoc()){
                 $name = $row['name'];
                 $eid = $row['event_id'];
+                $description = $row['description'];
+                $history = $row['history'];
+
+                if ($id == "default") {
+                    $pageContent .= '<div class="textbeside">';
+                    $pageContent .= "<h2>$name</h2>";
+                    $pageContent .= "<h3>Event Description</h3>";
+                    $pageContent .= "<p>$description</p>";
+                    $pageContent .= "<h3>History</h3>";
+                    $pageContent .= "<p>$history</p></div>";
+                }
+
                 if ($eid == $id){
                     print("<li class='selected'><a href=events.php?id=".$eid.">".$name."</a></li>");
-                }else{
+                    
+                    $pageContent .= '<div class="textbeside">';
+                    $pageContent .= "<h2>$name</h2>";
+                    $pageContent .= "<h3>Event Description</h3>";
+                    $pageContent .= "<p>$description</p>";
+                    $pageContent .= "<h3>History</h3>";
+                    $pageContent .= "<p>$history</p></div>";
+                } else {
                     print("<li><a href=events.php?id=".$eid.">".$name."</a></li>");
                 }
             }
-            echo "</ul>";
+            echo "</ul></div>";
+
+            //page content
+            echo "<div class='content'>";
+            echo $pageContent;
+            echo "</div>";
+
             /* Psuedocode:
             After printing out the sidebar, we need to print out all relevant information from the events table. 
                         
@@ -80,9 +106,13 @@ if(!isset($_SESSION)) {
 
 
             ?>
-        </div>
 
-        <div class="content">
+
+       <!-- <div class="content">
+            
+                
+        
+
             <div class="textbeside">
                 <h2>Running Cornellians</h2>
                 <h3>Event Description</h3>
@@ -98,6 +128,6 @@ if(!isset($_SESSION)) {
                 <h3>History</h3>
                 <p>Waiting for more information</p>
             </div>
-        </div>
+        </div> -->
     </body>
 </html>
