@@ -106,28 +106,5 @@ if(!isset($_SESSION)) {
 
 
             ?>
-
-
-       <!-- <div class="content">
-            
-                
-        
-
-            <div class="textbeside">
-                <h2>Running Cornellians</h2>
-                <h3>Event Description</h3>
-                <p>Adopted from the Running Man variety show from Korea, we designed exciting missions and racing for a unique event. Divided into team white and team black, two teams competed against each other in a several tiny games to win the bonus for the final round. In the last round, two teams chase around each other to pull off each other's nametag on the back. Whichever team has the last man standing wins. However, what they didn’t realize is that secret spy couple has betrayed everyone and tried to win the final mission...</p>
-                <h3>History</h3>
-                <p>An Econ-major Cornellian, Magic Peng, came up with the idea of recreating the most pupolar Korean TV show RunningMan at Cornell. At that time he was a sophomore, and he decided to work with his friends to start a small event on campus just for fun. However, everyone liked his idea and he had to recruit a larger team to accomplish a bigger event.</p>
-            </div>
-            <div class="textbeside">
-                <h2>Micro Film</h2>
-                <h3>Event Description</h3>
-                <p>Our first micro film production features student actors and actresses. The film  depicts Gu Nanfeng, a woman in her late twenties, encounters her hidden past after receiving a mysterious text. When facing decisions in life, people often fall for the pretty lies. So did Nanfeng. But there is a voice deep inside that keeps telling her to wake up. As she confronts her worst nightmare, she was eventually able to discover her true self and follow her childhood dreams.
-                </p>
-                <h3>History</h3>
-                <p>Waiting for more information</p>
-            </div>
-        </div> -->
     </body>
 </html>
