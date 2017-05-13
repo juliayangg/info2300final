@@ -401,8 +401,40 @@ img.all-photos {
     transition: 0.5s;
 }
 
-#map{
-    width:40%;
+
+.contacts{
+    width: 80%;
+    margin: auto;
+}
+
+.contacts h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts h3{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts p{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    line-height: 150%;
+}
+
+.contacts a{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color:black;
+    line-height: 150%;
+    text-decoration: underline;
+}
+
+.contacts #map{
+    width:70%;
     height:400px;
     margin:auto;
     padding-bottom: 30px;
