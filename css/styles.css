@@ -364,7 +364,7 @@ input[type=password]{
 
 /* ALL PHOTOS AND ALBUMS */
 a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active {
-    color: #e6e6e6;
+    color: #191919;
 }
 
 .image-container {
@@ -373,6 +373,7 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     display: inline-block;
     margin: 3px;
     margin-top: 5px;
+    position: relative;
 }
 
 img.all-photos {
@@ -386,6 +387,18 @@ img.all-photos {
 
 .image-container:hover span.deets {
     opacity: 1;
+}
+
+.image-container span.deets {
+    /*centering text in middle of picture */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    
+    opacity: 0;
+    transition: 0.5s;
 }
 
 #map{
