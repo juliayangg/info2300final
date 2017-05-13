@@ -105,7 +105,7 @@ if(!isset($_SESSION)) {
                             } else { //VICE-PRESIDENT
                                 $vpString .= '<div class="picture">';
                                 $vpString .= "<img src='img/$file_path'>";
-                                $vpString .= "<span class='deets'>   <span>$name<br>$major$grad_year<br>President</span></span>";
+                                $vpString .= "<span class='deets'>   <span>$name<br>$major$grad_year<br>Vice-President</span></span>";
                                 $vpString .=  "</div>";
                             }
                         }
