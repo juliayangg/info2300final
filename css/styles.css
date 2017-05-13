@@ -407,6 +407,21 @@ img.all-photos {
     margin: auto;
 }
 
+.contacts .column1{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:left;
+}
+
+.contacts .column2{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:right;
+    display: inline-block;
+}
+
 .contacts h2{
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -433,9 +448,20 @@ img.all-photos {
     text-decoration: underline;
 }
 
+.contacts #contactimg{
+    width: 70%;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#contactimg img{
+    width: 100%;
+}
+
 .contacts #map{
     width:70%;
-    height:400px;
+    height:250px;
     margin:auto;
     padding-bottom: 30px;
     margin-bottom: 30px;
