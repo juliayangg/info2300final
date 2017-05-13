@@ -62,6 +62,7 @@ if(!isset($_SESSION)) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='image-container'>";
                         echo "<img class='all-photos' src=img/" . $row['file_path'] . ">";
+                        echo "<span><span class='deets'>Learn More</span></span>";
                     echo "</div>";
                 }
             }
