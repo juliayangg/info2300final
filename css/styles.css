@@ -159,7 +159,7 @@ h1{
     font-size: 200%;
     text-align: center;
     color: #333333;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 
@@ -220,7 +220,7 @@ h1{
 #gallery {
     display: inline-block;  
     margin-left: 3%;
-    width: 70%;
+    width: 100%;
 }
 .picture {
     display: inline-block;

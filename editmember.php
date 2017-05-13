@@ -22,59 +22,52 @@ if(!isset($_SESSION)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
+    
+    <?php include 'includes/nav.php';?>
 
-<?php include 'includes/nav.php';?>
-<?php
-if (!isset($_SESSION['logged_user_by_sql']) ){
-    print('<p> You are not logged in.</p>');
-    print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
-    exit();
-}
-?>
-
-<?php
-$positions = array("President", "VP", "Finance", "Multimedia", "Operations");
-
+    <?php
+    if (!isset($_SESSION['logged_user_by_sql']) ){
+        print('<p> You are not logged in.</p>');
+        print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
+        exit();
+    }
+    $positions = array("President", "VP", "Finance", "Multimedia", "Operations");
     //displays all of the positions
-function displayPosition() {
-    global $positions;
-    foreach ($positions as $pos){
-        echo '<input type="radio" name="position" value="'.$pos.'">' .$pos.'<br>';
+    function displayPosition() {
+        global $positions;
+        foreach ($positions as $pos){
+            echo '<input type="radio" name="position" value="'.$pos.'">' .$pos.'<br>';
+        }
     }
-}
+    
+    require_once 'includes/config.php';
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    if ($mysqli->errno) {
+        print ("<h2>Error Connecting to Database</h2>");
+        exit();
+    }
 
+    $members = array();
+    $getMembers=$mysqli->query('SELECT member_id,name FROM members');
+    while ($info = $getMembers->fetch_assoc()){
+        $id = $info['member_id'];
+        $name = $info['name'];
+        $members[$id] = $name;
+    }
 
-require_once 'includes/config.php';
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-if ($mysqli->errno) {
-    print ("<h2>Error Connecting to Database</h2>");
-    exit();
-}
-
-$members = array();
-$getMembers=$mysqli->query('SELECT member_id,name FROM members');
-while ($info = $getMembers->fetch_assoc()){
-    $id = $info['member_id'];
-    $name = $info['name'];
-    $members[$id] = $name;
-}
-
-
-
-function displayMembers() {
-    global $members;
+    function displayMembers() {
+        global $members;
         //echo '<select id="members">';
-    echo "<option disabled selected value> -- select a member -- </option>";
-    foreach ($members as $id => $name){
-        echo "<option value='$id'>$name</option";
-    }
+        echo "<option disabled selected value> -- select a member -- </option>";
+        foreach ($members as $id => $name){
+            echo "<option value='$id'>$name</option>";
+        }
         //echo '</select>';
+    }
 
-}
+    ?>
 
-?>
-
-<body>
+    <body>
     <div class="messages">
         <h2>Edit Member Status</h2>
         <form method='POST' enctype="multipart/form-data">
@@ -138,7 +131,6 @@ function displayMembers() {
         }
         else {
             $updateActivity = "UPDATE members SET active=$status WHERE member_id=$selectedMember";
-            echo "$updateActivity";
             $result = $mysqli->query($updateActivity);
             if (!$result) {
                 print($mysqli->error);

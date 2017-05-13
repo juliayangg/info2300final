@@ -13,8 +13,7 @@
         <title>Home | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
         <?php 
             require_once "includes/functions.php";
             add_versioned_file( 'scripts/jquery-1.11.3.min.js', 'JavaScript' );
