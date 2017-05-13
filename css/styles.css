@@ -340,6 +340,10 @@ input[type=password]{
 }
 
 /* ALL PHOTOS AND ALBUMS */
+a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active {
+    color: #e6e6e6;
+}
+
 .image-container {
     height: 23%;
     width: 23%;
@@ -354,7 +358,7 @@ img.all-photos {
     max-width: 100%;
 }
 
-img.all-photos:hover {
+.image-container:hover img{
     opacity: 0.3;
 }
 
