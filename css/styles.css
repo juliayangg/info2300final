@@ -125,7 +125,7 @@ h1{
 .text{
     max-width: 85%;
     padding-top: 10px;
-    padding-bottom: 30px;;
+    padding-bottom: 10px;;
     margin:auto;
 }
 
@@ -146,36 +146,20 @@ h1{
 
 .text img{
     float:right;
-    width: 25%;
+    width: 45%;
     padding-left: 3%;
 }
 
-.text2{
-    max-width: 85%;
+.welcome{
+    max-width: 100%;
     padding-top: 10px;
-    padding-bottom: 30px;;
-    margin:auto;
 }
 
-.text2 h2{
+.welcome h2{
+    font-size: 200%;
     text-align: center;
     color: #333333;
-    font-family: 'Montserrat', sans-serif;
-    padding-bottom: 10px;
-    text-decoration: underline;
-}
-
-.text2 p{
-    font-family: 'Raleway', sans-serif;
-    color: #4d4d4d;
-    line-height: 180%;
-    text-indent: 50px;
-}
-
-.text2 img{
-    float:left;
-    width: 25%;
-    padding-right: 3%;
+    font-family: 'Indie Flower', cursive;
 }
 
 
