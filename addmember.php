@@ -170,12 +170,8 @@ if(!isset($_SESSION)) {
                                 }
                         echo "<p>Information of $name is successfully updated.</a>";
                     }
-
                 }
-                
-
             }
-
             ?>        
         </div>
     </body>

@@ -60,10 +60,12 @@ if(!isset($_SESSION)) {
             } else {
                 $result = $mysqli->query("SELECT * FROM photos");
                 while ($row = $result->fetch_assoc()) {
+                    echo "<a class='photo-link' href=photo.php?pid=" . $row['photo_id'] . ">";
                     echo "<div class='image-container'>";
                         echo "<img class='all-photos' src=img/" . $row['file_path'] . ">";
-                        echo "<span><span class='deets'>Learn More</span></span>";
+                        echo "<span class='deets'><span>Learn More</span></span>";
                     echo "</div>";
+                    echo "</a>";
                 }
             }
             echo "</div>";
