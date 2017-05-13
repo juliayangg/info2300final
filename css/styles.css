@@ -1,0 +1,393 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @coco9zhang
+ Sign out
+ Unwatch 3
+  Star 0
+  Fork 0 juliayangg/info2300final Private
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathinfo2300final/css/styles.css
+2b9863d  18 minutes ago
+@mlelien mlelien photo structure down
+2 contributors @juliayangg @mlelien
+RawBlameHistory     
+Executable File  376 lines (314 sloc)  5.7 KB
+/* RED: #b31b1b
+   GRAY: #e6e6e6
+*/
+
+body{
+    margin:0;
+    padding:0;
+    margin-bottom:5%;
+    font-family: "Raleway";
+}
+
+p{
+    text-align: center;
+}
+
+p a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #a3a3a3;
+}
+
+.container {
+    overflow: hidden;
+    background-color: #b31b1b;
+    width:100%;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight:500;
+    border-bottom: 2px solid #e6e6e6;
+    z-index: 1;
+}
+
+.container a {
+    float: right;
+    font-size: 16px;
+    color: #f8f8f8;
+    text-align: center;
+    padding: 20px 30px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight:500;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    padding:0;
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+    background-color: #9c1717;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #e6e6e6;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#logo{
+    padding:20px;
+    padding-left:7%;
+}
+
+h1{
+    float:right;
+    padding-right: 5%;
+    padding-top: 50px;
+    color:#b31b1b;
+    font-weight: 900;
+    font-size: 250%;
+    font-family: 'Raleway', sans-serif;
+    text-shadow: 1px, 1px, #e6e6e6;
+}
+
+.greyContainer{
+    background-color: #e6e6e6;
+    overflow: hidden;
+    width:100%;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left:3%;
+    text-transform: uppercase;
+}
+
+.greyContainer a{
+    background-color: white;
+    color:#a6a6a6;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 10px 10px 10px 10px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.text{
+    max-width: 85%;
+    padding-top: 10px;
+    padding-bottom: 30px;;
+    margin:auto;
+}
+
+.text h2{
+    text-align: center;
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+
+.text p{
+    font-family: 'Raleway', sans-serif;
+    color: #4d4d4d;
+    line-height: 180%;
+    text-indent: 50px;
+}
+
+.text img{
+    float:right;
+    width: 25%;
+    padding-left: 3%;
+}
+
+.text2{
+    max-width: 85%;
+    padding-top: 10px;
+    padding-bottom: 30px;;
+    margin:auto;
+}
+
+.text2 h2{
+    text-align: center;
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+
+.text2 p{
+    font-family: 'Raleway', sans-serif;
+    color: #4d4d4d;
+    line-height: 180%;
+    text-indent: 50px;
+}
+
+.text2 img{
+    float:left;
+    width: 25%;
+    padding-right: 3%;
+}
+
+
+/***** SIDEBAR *****/
+.sidebar {
+    margin-top:20%;
+    margin-left: 1%;
+    max-height: 50%;
+    width: 10%;
+    float: left;
+    position: fixed;
+    top: 0;
+    z-index: 0;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.sidebar .search {
+    position: relative;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 30%;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #101010;
+}
+
+.sidebar ul li a:hover {
+    color: #b31b1b;
+    font-weight: 500;
+    transition: 700ms;
+}
+
+.sidebar ul li a:visited {
+    border-bottom: 1px solid #b31b1b;
+    padding-bottom: 2px;
+}
+
+.sidebar ul li.selected a {
+    color: #b31b1b;
+    border-bottom: 1px solid #b31b1b;
+}
+
+
+/***** EBOARD *****/
+.content {
+    width: 80%;
+    margin-left: 15%;
+}
+
+#gallery {
+    display: inline-block;  
+    margin-left: 3%;
+    width: 70%;
+}
+.picture {
+    display: inline-block;
+    position: relative;
+    margin-right: 1%;
+}
+
+.picture img {
+    width: 200px;
+    height: 200px;
+    transition: 0.5s ease;
+}
+
+.picture:hover img {
+    opacity: 0.3;
+}
+
+.picture:hover span.deets {
+    opacity: 1;
+}
+
+.picture span.deets {
+    /*centering text in middle of picture */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.messages {
+    max-width: 85%;
+    margin:auto;
+    font-family: 'Montserrat', sans-serif;
+}
+.messages h2{
+    text-align: center;
+}
+.messages p{
+    text-align: center;
+}
+
+.text h3{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 200%;
+}
+
+.text h4{
+    text-align: center;
+}
+
+.text a{
+    color: #4d4d4d;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.error{
+    color:#b31b1b;
+    font-weight: bold;
+}
+
+form {
+    text-align: center;
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+    text-align:left;
+}
+
+table td{
+    padding:5px;
+}
+
+
+.button {
+  text-align: center;
+  border:1px solid #858585;
+  padding:7px 10px;
+  font-size:12px;
+  background-color:#ffffff;
+  font-family:Raleway;
+  text-align: center;
+  text-decoration: none;
+  color:black;
+
+}
+
+input[type=text]{
+    font-size:12pt;
+}
+
+input[type=password]{
+    font-size:12pt;
+}
+
+/* ALL PHOTOS AND ALBUMS */
+.image-container {
+    height: 23%;
+    width: 23%;
+    display: inline-block;
+    margin: 3px;
+    margin-top: 5px;
+    position: relative;
+}
+
+img.all-photos {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+img.all-photos:hover {
+    opacity: 0.3;
+}
+
+.image-container:hover span.deets {
+    opacity: 1;
+}
+
+.image-container span.deets {
+    /*centering text in middle of picture */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    
+    opacity: 0;
+    transition: 0.5s;
+}
