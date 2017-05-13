@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @coco9zhang
- Sign out
- Unwatch 3
-  Star 0
-  Fork 0 juliayangg/info2300final Private
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathinfo2300final/css/styles.css
-2b9863d  18 minutes ago
-@mlelien mlelien photo structure down
-2 contributors @juliayangg @mlelien
-RawBlameHistory     
-Executable File  376 lines (314 sloc)  5.7 KB
 /* RED: #b31b1b
    GRAY: #e6e6e6
 */
@@ -321,6 +303,29 @@ h1{
     font-weight: bold;
 }
 
+.textbeside{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.textbeside h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.textbeside h3{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+}
+
+.textbeside p{
+    font-family: 'Raleway', sans-serif;
+    text-indent: 50px;
+    line-height: 150%;
+    text-align: left;
+}
+
 form {
     text-align: center;
 }
@@ -364,7 +369,6 @@ input[type=password]{
     display: inline-block;
     margin: 3px;
     margin-top: 5px;
-    position: relative;
 }
 
 img.all-photos {
@@ -372,22 +376,18 @@ img.all-photos {
     max-width: 100%;
 }
 
-img.all-photos:hover {
-    opacity: 0.3;
+#map{
+    width:40%;
+    height:400px;
+    margin:auto;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 
-.image-container:hover span.deets {
-    opacity: 1;
-}
-
-.image-container span.deets {
-    /*centering text in middle of picture */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    
-    opacity: 0;
-    transition: 0.5s;
+.search{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float:right;
+    margin-right: 5%;
+    font-family: 'Raleway', sans-serif;
 }
