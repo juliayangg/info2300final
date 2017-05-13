@@ -29,7 +29,7 @@ function validText(err, input){
 		msg(err, "Required");
 		return false;
 	}
-	else if (/^[a-zA-Z_]*$/.test(input)){
+	else if (/^[A-Za-z\s]+$/.test(input)){
 		msg(err, "");
 		return true;
 	}
