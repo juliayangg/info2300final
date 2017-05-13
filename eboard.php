@@ -15,14 +15,14 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
         require_once "includes/functions.php";
+        require_once "includes/config.php";
         //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
     
     <?php include 'includes/nav.php';?>
-    <body>
-        <div class="sidebar">        
+    <body>      
         <?php
             $type = $_GET['type'];
             /* Psuedocode:
@@ -48,179 +48,95 @@ if(!isset($_SESSION)) {
             Step 7: print out a header of "All current members" or "President / VP" or "Alumni" etc according to type, and display all pictures as the $result returns. When hovering, other relevant information will all display. 
             */
             
-            switch ($type) {
-                case "presvp":
-                    presVPsideMenu();
-                    echo "<div class='content'>";
-                    presVPgallery();
-                    echo "</div>";
-                    break;
-                    
-                case "multimedia":
-                    multimediaSideMenu();
-                    echo "<div class='content'>";
-                    multimediaGallery();
-                    echo "</div>";
-                    break;
-                    
-                 case "operations":
-                    operationsSideMenu();
-                    echo "<div class='content'>";
-                    operationsGallery();
-                    echo "</div>";
-                    break;
-                    
-                case "finance":
-                    financeSideMenu();
-                    echo "<div class='content'>";
-                    financeGallery();
-                    echo "</div>";
-                    break;
-                    
-                case "alumni":
-                    alumniSideMenu();
-                    echo "<div class='content'>";
-                    alumniGallery();
-                    echo "</div>";
-                    break;
-                
-                default: 
-                    sideMenu();
-                    echo "<div class='content'>";
-                    presVPgallery();
-                    multimediaGallery();
-                    operationsGallery();
-                    financeGallery();
-                    alumniGallery();
-                    echo "</div>";
-                    break;
-            }
             
-            function sideMenu() {
-                echo '<ul>';
-                echo '<li class="selected"><a href="eboard.php?type=default">All</a></li>';
-                echo '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
-                
-            function presVPsideMenu() {
-                echo '<ul>';
-                echo '<li><a href="eboard.php?type=default">All</a></li>';
-                echo '<li class="selected"><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
+            sideMenu($type);
+        
+            echo "<div class='content'>";
+            if ($type == "presvp")
+                presVPgallery();
+            else if ($type == "default") {
+                presVPgallery();
+                otherGallery("multimedia");
+                otherGallery("operations");
+                otherGallery("finance");
+            } else 
+                otherGallery($type);
+        
+            echo "</div>";
             
-            function multimediaSideMenu() {
-                echo '<ul>';
-                echo '<li><a href="eboard.php?type=default">All</a></li>';
-                echo '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li class="selected"><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
-            
-            function operationsSideMenu() {
-                echo '<ul>';
-                echo '<li><a href="eboard.php?type=default">All</a></li>';
-                echo '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li class="selected"><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
+            function sideMenu($type) {
+                $sideMenuString = "<div class='sidebar'><ul>";
+                
+                $sideMenuString .= $type=="default" ? '<li class="selected"><a href="eboard.php?type=default">All</a></li>' : '<li><a href="eboard.php?type=default">All</a></li>';
+                
+                $sideMenuString .= $type=="presvp" ? '<li class="selected"><a href="eboard.php?type=presvp">President/VP</a></li>' : '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
+                
+                $sideMenuString .= $type=="multimedia" ? '<li class="selected"><a href="eboard.php?type=multimedia">Multimedia</a></li>' : '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
+                
+                $sideMenuString .= $type=="operations" ? '<li class="selected"><a href="eboard.php?type=operations">Operations</a></li>' : '<li><a href="eboard.php?type=operations">Operations</a></li>';
+                
+                $sideMenuString .= $type=="finance" ? '<li class="selected"><a href="eboard.php?type=finance">Finance</a></li>' : '<li><a href="eboard.php?type=finance">Finance</a></li>';
+                
+                $sideMenuString .= $type=="alumni" ? '<li class="selected"><a href="eboard.php?type=alumni">Alumni</a></li>' : '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
+                
+                $sideMenuString .= "</ul></div>";
+                echo $sideMenuString;
             }
                 
-            function financeSideMenu() {
-                echo '<ul>';
-                echo '<li><a href="eboard.php?type=default">All</a></li>';
-                echo '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li class="selected"><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
-                
-            function alumniSideMenu() {
-                echo '<ul>';                
-                echo '<li><a href="eboard.php?type=default">All</a></li>';
-                echo '<li><a href="eboard.php?type=presvp">President/VP</a></li>';
-                echo '<li><a href="eboard.php?type=multimedia">Multimedia</a></li>';
-                echo '<li><a href="eboard.php?type=operations">Operations</a></li>';
-                echo '<li><a href="eboard.php?type=finance">Finance</a></li>';
-                echo '<li class="selected"><a href="eboard.php?type=alumni">Alumni</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
-
             function presVPgallery() {
-                echo '<h2>PRESIDENT/VICE-PRESIDENTS</h2>';
-                    echo '<div id="gallery">';
-                        echo '<div class="picture">';
-                            echo '<img src="img/pres.jpeg">';
-                            echo "<span class='deets'><span>Joe Smoth<br> AEM'19 <br> President</span></span>";
-                        echo '</div>';
-                        echo '<div class="picture">';
-                            echo '<img src="img/vp.jpg">';
-                            echo "<span class='deets'><span>Nancy Fan<br> Econ'18 <br> Vice President</span></span>";
-                        echo '</div>';
+                echo '<h2>PRESIDENT/VICE-PRESIDENT</h2>';
+                echo '<div id="gallery">';
+                        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+                        $result = $mysqli->query("SELECT * FROM members WHERE position LIKE '%president%'");
+                        $presidentString = "";
+                        $vpString = "";
+                        while ($row = $result->fetch_assoc()) {
+                            $position = strtolower($row['position']);
+                            $file_path = $row['file_path'];
+                            $name = $row['name'];
+                            $grad_year = "'" . substr(($row['grad_year']), 2);
+                            $major = $row['major'];
+
+                            if (strpos($position, 'vice') === false) { //PRESIDENT
+                                $presidentString .= '<div class="picture">';
+                                $presidentString .= "<img src='img/$file_path'>";
+                                $presidentString .= "<span class='deets'>   <span>$name<br>$major$grad_year<br>President</span></span>";
+                                $presidentString .=  "</div>";
+                            } else { //VICE-PRESIDENT
+                                $vpString .= '<div class="picture">';
+                                $vpString .= "<img src='img/$file_path'>";
+                                $vpString .= "<span class='deets'>   <span>$name<br>$major$grad_year<br>Vice-President</span></span>";
+                                $vpString .=  "</div>";
+                            }
+                        }
+                        echo $presidentString;
+                        echo $vpString;
                     echo '</div>';
             }
-                
-            function multimediaGallery() {
-                echo '<h2>MULTIMEDIA</h2>';
+       
+            function otherGallery($type) {
+                echo '<h2>'. strtoupper($type) . '</h2>';
                     echo '<div id="gallery">';
-                        echo '<div class="picture">';
-                            echo '<img src="img/multimedia.jpeg">';
-                            echo '<span class="deets"><span>Old MacDonald</span></span>';
-                        echo '</div>';
-                    echo '</div>';
+                        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+                        $result = $mysqli->query("SELECT * FROM members WHERE position LIKE '%$type%'");
+
+                        while ($row = $result->fetch_assoc()) {
+                            $position = strtolower($row['position']);
+                            $file_path = $row['file_path'];
+                            $name = $row['name'];
+                            $grad_year = "'" . substr(($row['grad_year']), 2);
+                            $major = $row['major'];
+
+                            echo '<div class="picture">';
+                                echo "<img src='img/$file_path'>";
+                                $typeTitle = ucfirst($type);
+                                echo "<span class='deets'><span>$name<br>$major$grad_year<br>$typeTitle</span></span>";
+                            echo  "</div>";   
+                        }
+                echo '</div>';
             }
             
-            function operationsGallery() {
-                echo '<h2>OPERATIONS</h2>';
-                    echo '<div id="gallery">';
-                        echo '<div class="picture">';
-                            echo '<img src="img/operations.jpg">';
-                            echo '<span class="deets"><span>Slick Dickson</span></span>';
-                        echo '</div>';
-                    echo '</div>';
-            }
-                
-            function financeGallery() {
-                echo '<h2>FINANCE</h2>';
-                    echo '<div id="gallery">';
-                        echo '<div class="picture">';
-                            echo '<img src="img/finance.jpg">';
-                            echo '<span class="deets"><span>Dino Saur</span></span>';
-                        echo '</div>';
-                    echo '</div>';
-            }
-                
-            function alumniGallery() {
-                 echo '<h2>ALUMNI</h2>';
-                    echo '<div id="gallery">';
-                        echo '<div class="picture">';
-                            echo '<img src="img/operations.jpg">';
-                            echo '<span class="deets"><span>Rich Dad</span></span>';
-                        echo '</div>';
-                    echo '</div>';
-            }
+            
         ?>
         </div>
     </body>

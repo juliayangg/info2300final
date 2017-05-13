@@ -15,6 +15,7 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
         require_once "includes/functions.php";
+        require_once "includes/config.php";
         //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
@@ -38,6 +39,15 @@ if(!isset($_SESSION)) {
             Step 5: display all photos in that album ($photos). Allow users to click on the photo to view image details (href=photo.php?pid=$photo_id)
             
             */
+
+            $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+            $result = $mysqli->query("SELECT * FROM albums INNER JOIN events ON events.event_id = albums.event_id WHERE album_id = $aid");
+            while ($row = $result->fetch_assoc()) {
+                $name = $row['name'];
+                echo "<h2>$name</h2>";
+                echo "PICTURES";
+            }
+
             ?>
         </div>
     </body>
