@@ -303,6 +303,29 @@ h1{
     font-weight: bold;
 }
 
+.textbeside{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.textbeside h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.textbeside h3{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+}
+
+.textbeside p{
+    font-family: 'Raleway', sans-serif;
+    text-indent: 50px;
+    line-height: 150%;
+    text-align: left;
+}
+
 form {
     text-align: center;
 }
@@ -350,7 +373,6 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     display: inline-block;
     margin: 3px;
     margin-top: 5px;
-    position: relative;
 }
 
 img.all-photos {
@@ -366,14 +388,18 @@ img.all-photos {
     opacity: 1;
 }
 
-.image-container span.deets {
-    /*centering text in middle of picture */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    
-    opacity: 0;
-    transition: 0.5s;
+#map{
+    width:40%;
+    height:400px;
+    margin:auto;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.search{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float:right;
+    margin-right: 5%;
+    font-family: 'Raleway', sans-serif;
 }
