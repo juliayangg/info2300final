@@ -20,12 +20,11 @@ if(!isset($_SESSION)) {
         ?>
     </head>
     
-    <?php include 'includes/nav.php';?>
-    <body>
-        <div class="sidebar">        
+    <?php include 'includes/nav.php'; require_once 'includes/config.php'; ?>
+    <body>      
             <?php
             $sort = $_GET['sort'];
-            echo '<ul>';
+            echo '<div class="sidebar">  <ul>';
             if ($sort == "photos"){
                 echo '<li><a href="photos.php?sort=albums">All Albums</a></li>';
                 print("<li class='selected'><a href=photos.php?sort=".$sort.">All Photos</a></li>");
@@ -33,7 +32,7 @@ if(!isset($_SESSION)) {
                 echo '<li class="selected"><a href="photos.php?sort='.$sort.'">All Albums</a></li>';
                 echo '<li><a href="photos.php?sort=photos">All Photos</a></li>';
             }
-            echo '</ul>';
+            echo '</ul></div>';
             
             /* Psuedocode:            
             Step 1: if $sort == "albums", then $query = 'SELECT * FROM albums"
@@ -47,8 +46,21 @@ if(!isset($_SESSION)) {
             Step 5: $result = $mysqli -> query ($query). Print out all photos, and allow audience to click on the photo, and will be directed to a page with specific details of that photo. (href = photo.php?pid=$photo_id)
             */
             
+            echo "<div class='content>";
+            $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+            if ($sort == "albums") {
+                $result = $mysqi->query("SELECT * FROM albums");
+                while ($row = $result->fetch_assoc()) {
+                    //styling and link
+                }
+            } else {
+                $result = $mysqi->query("SELECT * FROM photos");
+                while ($row = $result->fetch_assoc()) {
+                    //styling and link
+                }
+            }
+            echo "</div>";
             ?>
-        </div>
         <div class="search">
             Search: <input type="text" placeholder="Event, Year or Venue">
         </div>
