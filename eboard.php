@@ -92,7 +92,7 @@ if(!isset($_SESSION)) {
                         $vpString = "";
                         while ($row = $result->fetch_assoc()) {
                             $position = strtolower($row['position']);
-                            $file_path = "eboard/" . $row['file_path'];
+                            $file_path = $row['file_path'];
                             $name = $row['name'];
                             $grad_year = "'" . substr(($row['grad_year']), 2);
                             $major = $row['major'];
@@ -122,7 +122,7 @@ if(!isset($_SESSION)) {
 
                         while ($row = $result->fetch_assoc()) {
                             $position = strtolower($row['position']);
-                            $file_path = "eboard/" . $row['file_path'];
+                            $file_path = $row['file_path'];
                             $name = $row['name'];
                             $grad_year = "'" . substr(($row['grad_year']), 2);
                             $major = $row['major'];
