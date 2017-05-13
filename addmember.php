@@ -45,6 +45,16 @@ if(!isset($_SESSION)) {
     }
 
     ?>
+
+     <?php
+    require_once 'includes/config.php';
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    if ($mysqli->errno) {
+        print ("<h2>Error Connecting to Database</h2>");
+        exit();
+    }
+    ?>
+
     <body>
         <div class="messages">
             <h2>Add a New Member</h2>
@@ -92,17 +102,17 @@ if(!isset($_SESSION)) {
                         $majorErr = "major";
                     }
 
-                    $pos = $_POST['position'];
+                    $pos = filter_input( INPUT_POST, 'position', FILTER_SANITIZE_STRING );
                     if (empty($pos)){
                         $posErr = "position";
                     } else {
                         $exists = false; 
+                        global $positions;
                         foreach ($positions as $position){
                             if ($position === $pos){
                                 $exists = true; 
                             }
                         }
-
                         if (!$exists){
                             $posErr = "position";
                         }
