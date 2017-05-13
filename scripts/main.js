@@ -63,7 +63,7 @@ function validName(err, input) {
 		msg(err, "Required");
 		return false;
 	}
-	else if (/^[a-zA-Z]$/.test(input)){
+	else if (/^[A-Za-z\s]+$/.test(input)){
 		msg(err, "");
 		return true;
 	}

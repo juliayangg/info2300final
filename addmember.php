@@ -15,10 +15,9 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
         require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
+        add_versioned_file( 'scripts/main.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
-        <script src="scripts/main.js"></script> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     </head>
@@ -93,7 +92,7 @@ if(!isset($_SESSION)) {
                     }
 
                     $year = filter_input( INPUT_POST, 'uyear', FILTER_SANITIZE_NUMBER_INT);
-                    if ($year < 2010 || $year > 2018 ){
+                    if ($year < 2010 || $year > 2020 ){
                         $yearErr = "year";
                     }
 
@@ -131,22 +130,21 @@ if(!isset($_SESSION)) {
                             $photoErr = 'photo';
                         }
                     }
-
-                    if ($nameErr || $yearErr || $majorErr || $posErr || $photoErr ){
-                         echo "<p class='error'>Submission unsuccessful. The following are invalid: $nameErr $yearErr $majorErr $posErr $photoErr </p>";                       
+                    
+                    if (isset($nameErr) or isset($yearErr) or isset($majorErr) or isset($posErr) or isset($photoErr)){
+                         echo "<p class='error'>Submission unsuccessful. The following are invalid: $nameErr $yearErr $majorErr $posErr $photoErr </p>";
                     }
                     else if ($name && $year && $major && $position){
 
-                        $picpath = "img/eboard/$originalName";
+                        $picpath = "eboard/$originalName";
 
-                        $insertMember = "INSERT INTO Members VALUES (NULL, '$name', $year, '1', '$major', '$pos', '$picpath')";
-                        print $insertMember; 
+                        $insertMember = "INSERT INTO members VALUES (DEFAULT, '$name', $year, '1', '$major', '$pos', '$picpath')";
                         $result = $mysqli->query($insertMember);
                                 if (!$result) {
                                     print($mysqli->error);
                                     exit();
                                 }
-                        echo "<p>Submission successful. View your albums <a href='photos.php?type=default'>here</a>";
+                        echo "<p>Information of $name is successfully updated.</a>";
                     }
 
                 }

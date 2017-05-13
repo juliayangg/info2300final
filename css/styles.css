@@ -236,7 +236,7 @@ h1{
 #gallery {
     display: inline-block;  
     margin-left: 3%;
-    width: 70%;
+    width: 100%;
 }
 .picture {
     display: inline-block;
@@ -303,6 +303,29 @@ h1{
     font-weight: bold;
 }
 
+.textbeside{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.textbeside h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.textbeside h3{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+}
+
+.textbeside p{
+    font-family: 'Raleway', sans-serif;
+    text-indent: 50px;
+    line-height: 150%;
+    text-align: left;
+}
+
 form {
     text-align: center;
 }
@@ -351,4 +374,20 @@ input[type=password]{
 img.all-photos {
     max-height: 100%;
     max-width: 100%;
+}
+
+#map{
+    width:40%;
+    height:400px;
+    margin:auto;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.search{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float:right;
+    margin-right: 5%;
+    font-family: 'Raleway', sans-serif;
 }
