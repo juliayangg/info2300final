@@ -31,7 +31,7 @@ if(!isset($_SESSION)) {
         print('<p>Please <a href="login.php">log in</a> to to access this page.</p>');
         exit();
     }
-    $positions = array("President", "VP", "Finance", "Multimedia", "Operations");
+    $positions = array("President", "Vice President", "Finance", "Multimedia", "Operations");
     //displays all of the positions
     function displayPosition() {
         global $positions;
@@ -85,85 +85,102 @@ if(!isset($_SESSION)) {
             <input type="submit" class="button" name="changeStatus" value="Change Status">
         </form>
     </div>
-
+        
     <div class="messages">
-     <h2>Edit Member</h2>
-     <form method='POST' enctype="multipart/form-data">
-        <table class="center">
+        <h2>Edit Member</h2>
+        <form method='POST' enctype="multipart/form-data">
+            <table class="center">
+                <tr>
+                    <td>Name: <select name="editMember">
+                        <?php displayMembers() ?>
+                        </select></td>
+                </tr>
+        
+                <tr>
+                    <td>Graduation Year: 
+                    <input type="text" name="uyear" onchange="validYear('gradmsg', this.value);" placeholder="Graduation Year"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="gradmsg"></td>
+                </tr>
+                
+                <tr>
+                    <td>Major: <input type="text" name="umajor" onchange="validText('majormsg', this.value);" placeholder="Member's major"></td>
+                    <td><span class="error">*</span></td>
+                    <td class="error" id="majormsg"></td>
+                </tr>
 
-            <tr><td>Name: <select name="editMember">
-                <?php displayMembers() ?>
-            </select>
-        </td></tr>
-
-        <tr><td>Graduation Year: <input type="text" name="uyear" onchange="validYear('gradmsg', this.value);" placeholder="Graduation Year"></td>
-            <td><span class="error"></span></td>
-            <td class="error" id="gradmsg"></td></tr>
-
-            <tr><td>Major: <input type="text" name="umajor" onchange="validText('majormsg', this.value);" placeholder="Member's major"></td>
-                <td><span class="error"></span></td>
-                <td class="error" id="majormsg"></td></tr>
-
-                <tr><td> Position: <br><?php displayPosition(); ?></td></tr>
+                <tr>
+                    <td>Position: <br><?php displayPosition(); ?></td>
+                </tr>
             </table>
             <input type="submit" class="button" name="intake" value="Edit Member">
         </form>
     </div>
 
     <?php
-    $memberErr=$statusErr="";
+    $errlist=array();
 
     if(isset($_POST["changeStatus"])){
 
         if (!isset($_POST['memberStatus'])){
-            $memberErr = "member";
+            $errlist[] = "please choose a member.<br>";
         } else {
             $selectedMember = filter_input( INPUT_POST, 'memberStatus', FILTER_SANITIZE_NUMBER_INT );
         }
 
         $status = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_NUMBER_INT );
         if (!isset($status)){
-            $statusErr = "status";
+            $errlist[] = "please chooose a status.<br>";
         } 
 
-        if ($memberErr || $statusErr ){
-            echo "<p class='error'>Submission unsuccessful. The following are invalid: $memberErr $statusErr </p>";                   
-        }
-        else {
+        if (count($errlist)!=0){
+            echo "<p class='error'>Submission unsuccessful. The following errors occur:<br>";
+            foreach ($errlist as $err){
+                echo "$err";
+            }
+            echo "</p>";
+        } else {
             $updateActivity = "UPDATE members SET active=$status WHERE member_id=$selectedMember";
             $result = $mysqli->query($updateActivity);
             if (!$result) {
                 print($mysqli->error);
                 exit();
             }
-            echo "<p>Submission successful.</a>";
+            echo "<p>Status Update Successful.</a>";
         } 
     }
     ?>
 
     <?php
-    $memberErr=$yearErr=$majorErr="";
+    $errors=array();
 
     if(isset($_POST["intake"])){
         if (!isset($_POST['editMember'])){
-            $memberErr = "member";
+            $errors[] = "please choose a member.<br>";
         } else {
             $selectedMember = filter_input( INPUT_POST, 'editMember', FILTER_SANITIZE_NUMBER_INT );
         }
 
         $year = filter_input( INPUT_POST, 'uyear', FILTER_SANITIZE_NUMBER_INT);
         if (!preg_match("/^\d{4}$/", $year)){
-            $yearErr = "year";
+            $errors[] = "please enter a valid year.<br>";
         }
 
         $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
         if (empty($major)){
-            $majorErr = "major";
+            $errors[] = "please enter a major.<br>";
+        }
+        
+        $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
+        if (empty($major)){
+            $errors[] = "please enter a major.<br>";
+        }else if (!preg_match("/^[a-zA-Z' ]+$/",$major)){
+            $errors[] = "please enter a valid major.<br>";
         }
 
         $pos = filter_input( INPUT_POST, 'position', FILTER_SANITIZE_STRING );
         if (empty($pos)){
-            $posErr = "position";
+            $errors[] = "please choose a position.<br>";
         } else {
             $exists = false; 
             global $positions;
@@ -173,44 +190,27 @@ if(!isset($_SESSION)) {
                 }
             }
             if (!$exists){
-                $posErr = "position";
+                $errors[] = "please choose a valid position.<br>";
             }
         }
 
-        if ($memberErr || $yearErr && $majorErr && $posErr ){
-            echo "<p class='error'>Submission unsuccessful. The following are invalid: $memberErr $yearErr $majorErr </p>";                   
+        if (count($errors)!=0){
+            echo "<p class='error'>Submission unsuccessful. The following errors occur:<br>";
+            foreach ($errors as $error){
+                echo "$error";
+            }
+            echo "</p>";
+        } else {
+            $updateinfo = "UPDATE members SET grad_year=$year, major='$major', position='$pos' WHERE member_id=$selectedMember";
+            $result = $mysqli->query($updateinfo);
+            if (!$result) {
+                print($mysqli->error);
+                exit();
+            } else{
+                echo "<p>Submission successful.</a>";
+            }
         }
-        else {
-            if (empty($yearErr)) {
-                $updateActivity = "UPDATE members SET grad_year=$year WHERE member_id=$selectedMember";
-                $result = $mysqli->query($updateActivity);
-                if (!$result) {
-                    print($mysqli->error);
-                    exit();
-                }
-            }
-
-            if (empty($majorErr)){
-                $updateActivity = "UPDATE members SET major='$major' WHERE member_id=$selectedMember";
-                $result = $mysqli->query($updateActivity);
-                if (!$result) {
-                    print($mysqli->error);
-                    exit();
-                }
-            }
-
-            if (empty($posErr)){
-                $updateActivity = "UPDATE members SET position='$pos' WHERE member_id=$selectedMember";
-                $result = $mysqli->query($updateActivity);
-                if (!$result) {
-                    print($mysqli->error);
-                    exit();
-                }
-            }
-
-            echo "<p>Submission successful.</a>";
-        } 
     }
-    ?>        
-</body>
+    ?>
+    </body>
 </html>
