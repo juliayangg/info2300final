@@ -22,13 +22,17 @@ if(!isset($_SESSION)) {
     
     <?php include 'includes/nav.php'; require_once 'includes/config.php'; ?>
     <body>      
-            <?php
+        <?php
             $sort = $_GET['sort'];
-            echo '<div class="sidebar">  <ul>';
+            echo '<div class="sidebar">';
+            echo "<div class='search'>
+                    Search: <input type='text' placeholder='Event, Year or Venue'>
+                </div>";
+            echo '<ul>';
             if ($sort == "photos"){
                 echo '<li><a href="photos.php?sort=albums">All Albums</a></li>';
                 print("<li class='selected'><a href=photos.php?sort=".$sort.">All Photos</a></li>");
-            }else{
+            } else {
                 echo '<li class="selected"><a href="photos.php?sort='.$sort.'">All Albums</a></li>';
                 echo '<li><a href="photos.php?sort=photos">All Photos</a></li>';
             }
@@ -46,24 +50,25 @@ if(!isset($_SESSION)) {
             Step 5: $result = $mysqli -> query ($query). Print out all photos, and allow audience to click on the photo, and will be directed to a page with specific details of that photo. (href = photo.php?pid=$photo_id)
             */
             
-            echo "<div class='content>";
+            echo "<div class='content'>";
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
-                $result = $mysqi->query("SELECT * FROM albums");
+                $result = $mysqli->query("SELECT * FROM albums");
                 while ($row = $result->fetch_assoc()) {
                     //styling and link
                 }
             } else {
-                $result = $mysqi->query("SELECT * FROM photos");
+                $result = $mysqli->query("SELECT * FROM photos");
                 while ($row = $result->fetch_assoc()) {
-                    //styling and link
+                    echo "<div class='image-container'>";
+                        echo "<img class='all-photos' src=img/" . $row['file_path'] . ">";
+                    echo "</div>";
                 }
             }
             echo "</div>";
-            ?>
-        <div class="search">
-            Search: <input type="text" placeholder="Event, Year or Venue">
-        </div>
+        ?>
+
+        
         <!--Psuedocode:
         Call to the serach function in search.js-->
         <div class="textbeside">
