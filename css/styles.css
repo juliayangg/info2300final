@@ -125,7 +125,7 @@ h1{
 .text{
     max-width: 85%;
     padding-top: 10px;
-    padding-bottom: 30px;;
+    padding-bottom: 10px;;
     margin:auto;
 }
 
@@ -146,36 +146,20 @@ h1{
 
 .text img{
     float:right;
-    width: 25%;
+    width: 45%;
     padding-left: 3%;
 }
 
-.text2{
-    max-width: 85%;
+.welcome{
+    max-width: 100%;
     padding-top: 10px;
-    padding-bottom: 30px;;
-    margin:auto;
 }
 
-.text2 h2{
+.welcome h2{
+    font-size: 200%;
     text-align: center;
     color: #333333;
-    font-family: 'Montserrat', sans-serif;
-    padding-bottom: 10px;
-    text-decoration: underline;
-}
-
-.text2 p{
-    font-family: 'Raleway', sans-serif;
-    color: #4d4d4d;
-    line-height: 180%;
-    text-indent: 50px;
-}
-
-.text2 img{
-    float:left;
-    width: 25%;
-    padding-right: 3%;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 
@@ -236,7 +220,7 @@ h1{
 #gallery {
     display: inline-block;  
     margin-left: 3%;
-    width: 70%;
+    width: 100%;
 }
 .picture {
     display: inline-block;
@@ -363,7 +347,7 @@ input[type=password]{
 }
 
 /* ALL PHOTOS AND ALBUMS */
-a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active {
+a.unstyled-link:link, a.unstyled-link:visited, a.unstyled-link:hover, a.unstyled-link:active {
     color: #191919;
 }
 
@@ -376,7 +360,7 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     position: relative;
 }
 
-img.all-photos {
+.image-container img {
     max-height: 100%;
     max-width: 100%;
 }
@@ -401,9 +385,142 @@ img.all-photos {
     transition: 0.5s;
 }
 
-#map{
-    width:40%;
-    height:400px;
+.album-container {
+    height: 40%;
+    width: 40%;
+    display: inline-block;
+    position: relative;
+    margin-right: 8%;
+}
+
+.album-container img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.album-container:hover img {
+    opacity: 0.3;
+}
+
+
+.album-container:hover span.deets {
+    opacity: 1;
+}
+
+.album-container span.deets {
+    /*centering text in middle of picture */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    
+    opacity: 0;
+    transition: 0.5s;
+}
+
+h2.album-title {
+    display: inline;
+}
+
+
+/* SINGLE PHOTO */
+
+.single-container {
+    margin: 10px auto;
+}
+
+.single-container img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.single-container h2 {
+    text-align: center;
+}
+
+/* SINGLE ALBUM */
+.single-album-content {
+    margin-left: 5%;
+}
+
+.single-album-container {
+    height: 23%;
+    width: 23%;
+    display: inline-block;
+    margin: 3px;
+    margin-top: 5px;
+    position: relative;
+}
+
+.single-album-container img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+/* CONTACTS */
+.contacts{
+    width: 80%;
+    margin: auto;
+}
+
+.contacts .column1{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:left;
+}
+
+.contacts .column2{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:right;
+    display: inline-block;
+}
+
+.contacts h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts h3{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts p{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    line-height: 150%;
+}
+
+.contacts a{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color:black;
+    line-height: 150%;
+    text-decoration: underline;
+}
+
+.contacts #contactimg{
+    width: 70%;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#contactimg img{
+    width: 100%;
+}
+
+.contacts #map{
+    width:70%;
+    height:250px;
     margin:auto;
     padding-bottom: 30px;
     margin-bottom: 30px;

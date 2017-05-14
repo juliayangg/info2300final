@@ -14,15 +14,16 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
-        require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
-        add_versioned_file( 'css/styles.css', 'Style' );
+            require_once "includes/functions.php";
+            require_once "includes/config.php";
+            //add_versioned_file( 'js/scripts.js', 'JavaScript' );
+            add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
     
     <?php include 'includes/nav.php';?>
     <body>
-        <div class="sidebar">        
+               
             <?php
             $pid = $_GET['pid'];
             
@@ -33,7 +34,16 @@ if(!isset($_SESSION)) {
             
             Step 3: print out relevant information of this photo, including which album it belongs to and which event it belongs to. Display them in a pleasant format. Make sure to rescale the image to similar size.
             */
+            
+            $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+            $result = $mysqli->query("SELECT * FROM photos LEFT OUTER JOIN albums ON albums.album_id=photos.album_id LEFT OUTER JOIN events ON albums.event_id=events.event_id WHERE photos.photo_id = $pid");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='single-container'>";
+                echo "<img src=img/" . $row['file_path'] . "/>";
+                echo "<h2>" . $row['name'] . "</h2>";
+                echo "</div>"; 
+            }
             ?>
-        </div>
+       
     </body>
 </html>

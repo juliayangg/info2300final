@@ -50,35 +50,47 @@ if(!isset($_SESSION)) {
             <form action="createaccount.php" method='POST' enctype="multipart/form-data">
                 <table class="center">
                     <tr><td>Username: <input type="text" name="username"></td>
-
                     <tr><td>Password: <input type="password" name="password"></td>
+                    <tr><td>Re-enter Password: <input type="password" name="rpassword"></td>
                 </table>
                 <input type="submit" class="button" name="create" value="Add account">
             </form>
         </div>
 
         <?php
-        $usernameErr = $passwordErr = "";
-
         if(isset($_POST["create"])){
+            $errlist=array();
             $username = filter_input( INPUT_POST, 'username', FILTER_SANITIZE_STRING );
             if (empty($username)){
-                $usernameErr = "username";
-            }
-            $password = filter_input( INPUT_POST, 'password', FILTER_SANITIZE_STRING );
-            if (empty($password)){
-                $passwordErr = "password";
-            }
-
-            foreach ($currentUsernames as $oldUser){
-                if ($oldUser == $username){
-                    echo "<p class='error'> Account creation failed: username already exists </p>"; 
-                    exit();
+                $errlist[] = "Enter a username.<br>";
+            }else if(!preg_match("/^[a-zA-Z0-9']+$/",$username)){
+                $errlist[]="Username can only contain letters and numbers.<br>";  
+            }else{
+                foreach ($currentUsernames as $oldUser){
+                    if ($oldUser == $username){
+                        $errlist[]="Username already exists.<br>";
+                    }
                 }
             }
+            
+            $password = filter_input( INPUT_POST, 'password', FILTER_SANITIZE_STRING );
+            if (empty($password)){
+                $errlist[] = "Enter a password.<br>";
+            }
+            
+            $rpassword = filter_input( INPUT_POST, 'rpassword', FILTER_SANITIZE_STRING );
+            if (empty($rpassword)){
+                $errlist[] = "Re-enter the password.<br>";
+            }else if ($password != $rpassword){
+                $errlist[] = "Two passwords do not match.<br>";
+            }
 
-            if ($usernameErr || $passwordErr){
-                echo "<p class='error'> Account creation failed: invalid $usernameErr $passwordErr </p>"; 
+            if (count($errlist)!=0){
+                echo "<p class='error'>Submission unsuccessful. The following errors occur:<br>";
+                foreach ($errlist as $error){
+                    echo "$error";
+                }
+                echo "</p>";
             }
             else {
                 $hashpassword = password_hash($password, PASSWORD_DEFAULT);
@@ -92,7 +104,6 @@ if(!isset($_SESSION)) {
                 echo "<p>Account creation successful. Please <a href='logout.php'>logout</a> to test your new account.";
             }   
         }
-
         ?>        
     </body>
 </html>

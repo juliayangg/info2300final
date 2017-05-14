@@ -130,25 +130,7 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
             }
 
         }
-
-        ?>
-            <!-- Psuedocode:
-            Step 0: Check the loggin status. If not logged in, don't show up the form, and display message of "you need to log in to use this functionality"
-
-            Step 1: if isset $_POST['submit'], and !isset $_FILES['newphotos'], print("please select at least one image to upload")
-            
-            Step 2: else (which means isset $_FILES['newphotos']), iterate through each photo in this photo list, check if each file is a picture file (jpg,png,etc.)
-            
-            Step 3: $originalName = $newPhotos['name'][$i] and if $newPhotos['error'][$i] == 0, then $tempName = $newPhotos['tmp_name'][$i];
-            
-            Step 4: move_uploaded_file( $tempName, "images/$originalName" );
-						$_SESSION['photos'][] = $originalName; 
-                        if failed, print out failuer message. 
-            
-            Step 5: $uaid = $_POST['albums'] and then insert these information into photos table with default photo_id, file_path, and album_id as $uaid. If failed, print out failuer message. 
-            
-            Step 6: print out success message and a href to view all photos (href=photos.php?sort=photos). 
-        -->           
+        ?>          
     </div>
 </body>
 </html>
