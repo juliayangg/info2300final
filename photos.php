@@ -22,12 +22,11 @@ if(!isset($_SESSION)) {
     
     <?php include 'includes/nav.php'; require_once 'includes/config.php'; ?>
     <body>      
+        
+        <br>
         <?php
             $sort = $_GET['sort'];
             echo '<div class="sidebar">';
-            echo "<div class='search'>
-                    Search: <input type='text' placeholder='Event, Year or Venue'>
-                </div>";
             echo '<ul>';
             if ($sort == "photos"){
                 echo '<li><a href="photos.php?sort=albums">All Albums</a></li>';
@@ -62,7 +61,7 @@ if(!isset($_SESSION)) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<a class='photo-link' href=photo.php?pid=" . $row['photo_id'] . ">";
                     echo "<div class='image-container'>";
-                        echo "<img class='all-photos' src=img/" . $row['file_path'] . ">";
+                        echo "<img src=img/" . $row['file_path'] . ">";
                         echo "<span class='deets'><span>Learn More</span></span>";
                     echo "</div>";
                     echo "</a>";

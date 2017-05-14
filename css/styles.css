@@ -376,7 +376,7 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     position: relative;
 }
 
-img.all-photos {
+.image-container img {
     max-height: 100%;
     max-width: 100%;
 }
@@ -399,6 +399,22 @@ img.all-photos {
     
     opacity: 0;
     transition: 0.5s;
+}
+
+/* SINGLE PHOTO */
+
+.single-container {
+    margin: 10px auto;
+}
+
+.single-container img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.single-container h2 {
+    text-align: center;
 }
 
 #map{
