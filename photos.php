@@ -52,14 +52,24 @@ if(!isset($_SESSION)) {
             echo "<div class='content'>";
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
-                $result = $mysqli->query("SELECT * FROM albums");
+                $result = $mysqli->query("SELECT * FROM `albums` INNER JOIN events WHERE albums.event_id = events.event_id");
                 while ($row = $result->fetch_assoc()) {
-                    //styling and link
+                    $albumID = $row['album_id'];
+                    $photo_result = $mysqli->query("SELECT * FROM `photos` WHERE photos.album_id=$albumID LIMIT 1");
+                    while ($photo_row = $photo_result->fetch_assoc()) {
+                        echo "<div class='album-container'>";
+                            echo "<a class='unstyled-link' href=album.php?aid=$albumID>";
+                            echo "<img src=img/" . $photo_row['file_path'] . ">";
+                            echo "<span class='deets'><span>Learn More</span></span>";
+                            echo "</a>";
+                            echo "<h2 class='album-title'>" . $row['name'] . "</h2>    " . $row['year'];
+                        echo "</div>";
+                    }
                 }
             } else {
                 $result = $mysqli->query("SELECT * FROM photos");
                 while ($row = $result->fetch_assoc()) {
-                    echo "<a class='photo-link' href=photo.php?pid=" . $row['photo_id'] . ">";
+                    echo "<a class='unstyled-link' href=photo.php?pid=" . $row['photo_id'] . ">";
                     echo "<div class='image-container'>";
                         echo "<img src=img/" . $row['file_path'] . ">";
                         echo "<span class='deets'><span>Learn More</span></span>";
@@ -70,7 +80,6 @@ if(!isset($_SESSION)) {
             echo "</div>";
         ?>
 
-        
         <!--Psuedocode:
         Call to the serach function in search.js-->
 
