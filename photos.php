@@ -73,8 +73,6 @@ if(!isset($_SESSION)) {
         
         <!--Psuedocode:
         Call to the serach function in search.js-->
-        <div class="textbeside">
-            <p>See Psuedocode comments for now.</p>
-        </div>
+
     </body>
 </html>
