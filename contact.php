@@ -22,26 +22,39 @@ if(!isset($_SESSION)) {
     
     <?php include 'includes/nav.php';?>
     <body>
-        <div class="textbeside">
-            <p>Our Location</p>
-            <p>More information to be uploaded</p>
+        <div class="contacts">
+            <h2>Contact CME</h2>
+            <div class="column1">
+                <h3>Intersted in getting in touch? Contact Us Below</h3>
+                <p><a href="mailto:cornellcme@gmail.com" style="color:black;">cornellcme@gmail.com</a></p>
+                <p><a href="https://goo.gl/forms/6hVFfiRbejRNLgXu1" target="_blank">Click here to apply</a></p>
+                <div id="contactimg">
+                    <img src=img/all.jpg alt="CME FAMILY WELCOMES YOU">
+                </div>
+            </div>
+            <div class="column2">
+                <h3>Find Us on Campus</h3>
+                <p>Room 144, Goldwin Smith Hall, Cornell</p>
+
+                <div id="map">
+                    <script>
+                        function initMap() {
+                            var uluru = {lat: 42.449073, lng: -76.483534}; 
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 15,
+                                center: uluru
+                            });
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUqsDzgr-h1h38AIhFKSLY4xyNMBuRDDc&callback=initMap">
+                    </script>
+                </div>
+            </div>
         </div>
-        <div id="map"></div>
-        <script>
-            function initMap() {
-                var uluru = {lat: 42.4534, lng: -76.4735}; 
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 10,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUqsDzgr-h1h38AIhFKSLY4xyNMBuRDDc&callback=initMap">
-        </script>
   </body>
 </html>

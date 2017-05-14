@@ -125,7 +125,7 @@ h1{
 .text{
     max-width: 85%;
     padding-top: 10px;
-    padding-bottom: 30px;;
+    padding-bottom: 10px;;
     margin:auto;
 }
 
@@ -146,36 +146,20 @@ h1{
 
 .text img{
     float:right;
-    width: 25%;
+    width: 45%;
     padding-left: 3%;
 }
 
-.text2{
-    max-width: 85%;
+.welcome{
+    max-width: 100%;
     padding-top: 10px;
-    padding-bottom: 30px;;
-    margin:auto;
 }
 
-.text2 h2{
+.welcome h2{
+    font-size: 200%;
     text-align: center;
     color: #333333;
-    font-family: 'Montserrat', sans-serif;
-    padding-bottom: 10px;
-    text-decoration: underline;
-}
-
-.text2 p{
-    font-family: 'Raleway', sans-serif;
-    color: #4d4d4d;
-    line-height: 180%;
-    text-indent: 50px;
-}
-
-.text2 img{
-    float:left;
-    width: 25%;
-    padding-right: 3%;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 
@@ -236,7 +220,7 @@ h1{
 #gallery {
     display: inline-block;  
     margin-left: 3%;
-    width: 70%;
+    width: 100%;
 }
 .picture {
     display: inline-block;
@@ -401,6 +385,7 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     transition: 0.5s;
 }
 
+<<<<<<< HEAD
 /* SINGLE PHOTO */
 
 .single-container {
@@ -417,9 +402,67 @@ a.photo-link:link, a.photo-link:visited, a.photo-link:hover, a.photo-link:active
     text-align: center;
 }
 
-#map{
-    width:40%;
-    height:400px;
+/* CONTACTS */
+.contacts{
+    width: 80%;
+    margin: auto;
+}
+
+.contacts .column1{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:left;
+}
+
+.contacts .column2{
+    border-top: 2px solid;
+    border-top-color: #e6e6e6;
+    width: 48%;
+    float:right;
+    display: inline-block;
+}
+
+.contacts h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts h3{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-weight: 900;
+}
+
+.contacts p{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    line-height: 150%;
+}
+
+.contacts a{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color:black;
+    line-height: 150%;
+    text-decoration: underline;
+}
+
+.contacts #contactimg{
+    width: 70%;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#contactimg img{
+    width: 100%;
+}
+
+.contacts #map{
+    width:70%;
+    height:250px;
     margin:auto;
     padding-bottom: 30px;
     margin-bottom: 30px;
