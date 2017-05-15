@@ -59,7 +59,7 @@ if(!isset($_SESSION)) {
                     echo "<img src=img/" . $photo_row['file_path'] . ">";
                 echo "</div>";
             }
-            $name = $row['name'];
+
             echo "</div>";
             echo "</div>";  
         }
