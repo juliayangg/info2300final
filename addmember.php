@@ -15,10 +15,9 @@ if(!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
         require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
+        add_versioned_file( 'scripts/main.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
-        <script src="scripts/main.js"></script> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     </head>
@@ -80,7 +79,8 @@ if(!isset($_SESSION)) {
                 <input type="submit" class="button" name="intake" value="Add Member">
                 </form>
             <?php
-
+            
+            $invalidlist=array();
             if(isset($_POST["intake"])){
                 if (!isset($_FILES['newphoto'])){
                     echo '<p>Please select one photo to upload</p>';
@@ -89,22 +89,32 @@ if(!isset($_SESSION)) {
                 else {
                     $name = filter_input( INPUT_POST, 'uname', FILTER_SANITIZE_STRING );
                     if (empty($name)){
-                        $nameErr = "name"; 
+                        $nameErr = "empty name";
+                        $invalidlist[]=$nameErr;
+                    }else if (!preg_match("/^[a-zA-Z' ]+$/",$name)){
+                        $nameErr = "invalid name";
+                        $invalidlist[]=$nameErr;  
                     }
 
                     $year = filter_input( INPUT_POST, 'uyear', FILTER_SANITIZE_NUMBER_INT);
-                    if ($year < 2010 || $year > 2018 ){
-                        $yearErr = "year";
+                    if ($year < 2010 || $year > 2020 ){
+                        $yearErr = "invalid year";
+                        $invalidlist[]=$yearErr;
                     }
 
                     $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
                     if (empty($major)){
-                        $majorErr = "major";
+                        $majorErr = "empty major info";
+                        $invalidlist[]=$majorErr;
+                    }else if (!preg_match("/^[a-zA-Z' ]+$/",$major)){
+                        $majorErr = "invalid major";
+                        $invalidlist[]=$majorErr;
                     }
 
                     $pos = filter_input( INPUT_POST, 'position', FILTER_SANITIZE_STRING );
                     if (empty($pos)){
-                        $posErr = "position";
+                        $posErr = "empty position info";
+                        $invalidlist[]=$posErr;
                     } else {
                         $exists = false; 
                         global $positions;
@@ -114,46 +124,54 @@ if(!isset($_SESSION)) {
                             }
                         }
                         if (!$exists){
-                            $posErr = "position";
+                            $posErr = "invalid position";
+                            $invalidlist[]=$posErr;
                         }
                     }
 
                     //uploaded photo
                     print '<pre style="display:none;">' . print_r( $_FILES, true ) . '</pre>';
-                    if ( !empty( $_FILES[ 'newphoto' ]) ) {
+                    
+                    if ( !empty( $_FILES[ 'newphoto' ])) {
                         $newPhoto = $_FILES[ 'newphoto' ];
                         $originalName = $newPhoto[ 'name' ];
-                        if ( $newPhoto[ 'error' ] == 0 ) {
+                        $allowedTypes = array("image/png", "image/jpeg", "image/gif");
+                        $detectedType = $newPhoto['type'];
+                        if ( $newPhoto[ 'error' ] == 0 && in_array($detectedType,$allowedTypes)) {
                             $tempName = $newPhoto[ 'tmp_name' ];
                             move_uploaded_file( $tempName, 'img/eboard/'.$originalName);
                             $_SESSION['photos'][] = $originalName;
-                        } else{
-                            $photoErr = 'photo';
+                        } else if (!in_array($detectedType,$allowedTypes)){
+                            $photoErr = 'invalid photo type';
+                            $invalidlist[]=$photoErr;
+                        }else{
+                            $photoErr = 'photo upload error';
+                            $invalidlist[]=$photoErr;
                         }
                     }
-
-                    if ($nameErr || $yearErr || $majorErr || $posErr || $photoErr ){
-                         echo "<p class='error'>Submission unsuccessful. The following are invalid: $nameErr $yearErr $majorErr $posErr $photoErr </p>";                       
+                    
+                    if (count($invalidlist)!=0) {
+                        echo "<p class='error'>Submission unsuccessful. The following errors occur:";
+                        foreach ($invalidlist as $msg){
+                             echo "&nbsp;$msg";
+                        }
+                        echo "</p>";
                     }
-                    else if ($name && $year && $major && $position){
+                    
+                    else if (count($invalidlist)==0){
 
-                        $picpath = "img/eboard/$originalName";
+                        $picpath = "eboard/$originalName";
 
-                        $insertMember = "INSERT INTO Members VALUES (NULL, '$name', $year, '1', '$major', '$pos', '$picpath')";
-                        print $insertMember; 
+                        $insertMember = "INSERT INTO members VALUES (DEFAULT, '$name', $year, '1', '$major', '$pos', '$picpath')";
                         $result = $mysqli->query($insertMember);
                                 if (!$result) {
                                     print($mysqli->error);
                                     exit();
                                 }
-                        echo "<p>Submission successful. View your albums <a href='photos.php?type=default'>here</a>";
+                        echo "<p>Information of $name is successfully updated.</a>";
                     }
-
                 }
-                
-
             }
-
             ?>        
         </div>
     </body>
