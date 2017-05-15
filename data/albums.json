@@ -1,0 +1,36 @@
+/*
+	    {
+			"data": [
+				{
+					"album_id": "1",
+					"year": "2015",
+					"participant_list": "Jenny Wang, Willis Guo, Fangru Jiang",
+					"feedback": "\"Great event!\" - Jenny Wang",
+					"venue": "Hollister Hall",
+					"event_id": "1"
+				},
+				... //more albums
+			]
+	    }
+	    */
+
+{
+    "data": [
+        {
+            "album_id": "1",
+            "year": "2015",
+            "participant_list": "Xin Hao, Zhiwen Huang, Xin Lin, Yuxuan Ma, Magic Peng, Andrew Zeng, Emily Xiong, Zihan Wang, Connie Sun, Teresa Pan, Siyu Yang",
+            "feedback": "\"I had so much fun in this event! I hope to participate more in this event\" - Xin Hao",
+            "venue": "Hollister Hall",
+            "event_id": "1"
+        },
+        {
+            "album_id": "4",
+            "year": "2015",
+            "participant_list": "Athena Huang, Junhua Wu, Yuxuan Ma, Xin Lin, James Xu, Xinxin Wu, Mia Chen, Eric Huang, Connie Sun, Terasa Pan, Chelsea Luo, Dongze Yue",
+            "feedback": "\"Thanks to this event, I found my current boyfriend.\" -Chelsea; \"It is so much fun to watch as an audience!\" -Connie",
+            "venue": "Klarman Hall",
+            "event_id": "5"
+        }
+    ]
+}

@@ -50,6 +50,7 @@ if(!isset($_SESSION)) {
             */
             
             echo "<div class='content'>";
+
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
                 $result = $mysqli->query("SELECT * FROM `albums` INNER JOIN events WHERE albums.event_id = events.event_id");
