@@ -80,6 +80,20 @@ if(!isset($_SESSION)) {
             </form>
             
             <?php 
+
+            $existalbums = array();
+            $currentalbums = "SELECT event_id, year FROM albums";
+            $calbums = $mysqli->query($currentalbums);
+            if (!$calbums) {
+                print($mysqli->error);
+                exit();
+            }else{
+                while ($albuminfo = $calbums->fetch_assoc()){
+                    $eid = $albuminfo['event_id'];
+                    $albumyear = $albuminfo['year'];
+                    $existalbums[]=[$eid,$albumyear];
+                }
+            }
             if(isset($_POST["create"])){
                 $errlist=array();
                 $year = filter_input( INPUT_POST, 'ayear', FILTER_SANITIZE_NUMBER_INT);
@@ -99,10 +113,17 @@ if(!isset($_SESSION)) {
                 if (empty($venue)||!preg_match("/^[a-zA-Z' ]+$/",$venue)){
                     $errlist[] = "Please enter a valid venue.<br>";
                 }
-                if (isset($_POST['albums'])){
-                    $album = $_POST['albums'];
-                }else{
+                
+                if (!isset($_POST['albums'])){
                     $errlist[]= "Choose an event this album is about.<br>";
+                }else{
+                    $eventid = $_POST['albums'];
+                    $albumyear = $year;
+                    if (in_array([$eventid,$albumyear],$existalbums)){
+                        $errlist[]="Album already exists.<br>";
+                    }else{
+                    $album = $_POST['albums'];
+                    }
                 }
                 
                 if (count($errlist)!=0){
