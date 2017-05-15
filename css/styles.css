@@ -423,6 +423,20 @@ h2.album-title {
     display: inline;
 }
 
+.top-bar {
+    margin-bottom: 2%;
+}
+
+.top-bar h3 {
+    display: inline;
+}
+
+.top-bar .search{
+    float:right;
+    margin-right: 5%;
+    font-family: 'Raleway', sans-serif;
+}
+
 
 /* SINGLE PHOTO */
 
@@ -524,12 +538,4 @@ h2.album-title {
     margin:auto;
     padding-bottom: 30px;
     margin-bottom: 30px;
-}
-
-.search{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    float:right;
-    margin-right: 5%;
-    font-family: 'Raleway', sans-serif;
 }
