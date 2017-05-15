@@ -45,7 +45,7 @@ if(!isset($_SESSION)) {
         echo "<div class=single-album-content>";
         
         while ($row = $result->fetch_assoc()) {
-            echo "<h2 class='single-album-title'>$name</h2>";
+            echo "<h2 class='single-album-title'>" . $row['name'] . "</h2>";
             echo "<b>Participants</b>: " . $row['participant_List'] . "<br>";
             echo "<b>Feedback</b>: " . $row['feedbak'] . "<br>";
             echo "<b>Venue</b>: " . $row['venue'] . "<br><br>";
