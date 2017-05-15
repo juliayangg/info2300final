@@ -16,7 +16,6 @@ if(!isset($_SESSION)) {
         <?php 
         require_once "includes/functions.php";
         require_once "includes/config.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
