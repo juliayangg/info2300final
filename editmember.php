@@ -169,11 +169,6 @@ if(!isset($_SESSION)) {
         $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
         if (empty($major)){
             $errors[] = "please enter a major.<br>";
-        }
-        
-        $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
-        if (empty($major)){
-            $errors[] = "please enter a major.<br>";
         }else if (!preg_match("/^[a-zA-Z' ]+$/",$major)){
             $errors[] = "please enter a valid major.<br>";
         }

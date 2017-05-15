@@ -80,12 +80,12 @@ if(!isset($_SESSION)) {
                 if (strpos($position, 'vice') === false) { //PRESIDENT
                     $presidentString .= '<div class="picture">';
                     $presidentString .= "<img src='img/$file_path'>";
-                    $presidentString .= "<span class='deets'>   <span>$name<br>$major&nbsp;$grad_year<br>President</span></span>";
+                    $presidentString .= "<span class='deets'>   <span>$name<hr><br>$major&nbsp;$grad_year<hr><br>President</span></span>";
                     $presidentString .=  "</div>";
                 } else { //VICE-PRESIDENT
                     $vpString .= '<div class="picture">';
                     $vpString .= "<img src='img/$file_path'>";
-                    $vpString .= "<span class='deets'>   <span>$name<br>$major&nbsp;$grad_year<br>Vice-President</span></span>";
+                    $vpString .= "<span class='deets'>   <span>$name<hr><br>$major&nbsp;$grad_year<hr><br>Vice-President</span></span>";
                     $vpString .=  "</div>";
                 }
             }
@@ -109,7 +109,7 @@ if(!isset($_SESSION)) {
                 echo '<div class="picture">';
                 echo "<img src='img/$file_path'>";
                 $typeTitle = ucfirst($type);
-                echo "<span class='deets'><span>$name<br>$major&nbsp;$grad_year<br>$typeTitle</span></span>";
+                echo "<span class='deets'><span>$name<hr><br>$major&nbsp;$grad_year<hr><br>$typeTitle</span></span>";
                 echo  "</div>"; 
             }
             echo '</div>';

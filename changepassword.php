@@ -40,7 +40,6 @@ if(!isset($_SESSION)) {
         }  
     ?>
 
-
     <body>
         <div class="messages">
             <h2>Change password</h2>
@@ -49,64 +48,66 @@ if(!isset($_SESSION)) {
                     <tr><td>Username: <?php echo $username; ?> </td>
                     <tr><td>Old Password: <input type="password" name="opassword"></td>
                     <tr><td>New Password: <input type="password" name="npassword"></td>
+                    <tr><td>Re-enter Password: <input type="password" name="rpassword"></td>
                 </table>
                 <input type="submit" class="button" name="change" value="Change password">
             </form>
         </div>
 
         <?php
-        $opasswordErr = $npasswordErr = "";
          if(isset($_POST["change"])){
-
-            $opassword = filter_input( INPUT_POST, 'opassword', FILTER_SANITIZE_STRING );
-            if (empty($opassword)){
-                $opasswordErr = "old password";
-            }
-
-            $npassword = filter_input( INPUT_POST, 'npassword', FILTER_SANITIZE_STRING );
-            if (empty($npassword)){
-                $npasswordErr = "new password";
-            }
-
-            if ($opasswordErr || $npasswordErr ){
-                echo "<p class='error'> Password change failed: invalid $opasswordErr $npasswordErr </p>"; 
-            } 
-
-            else { 
-                $changePW = "SELECT * FROM login WHERE username='$username'";
-                $result = $mysqli->query($changePW);
-                if (!$result) {
+             $errlist = array();
+             $opassword = filter_input( INPUT_POST, 'opassword', FILTER_SANITIZE_STRING );
+             if (empty($opassword)){
+                 $errlist[]="Please enter the old password.<br>";
+             }else{
+                 $fetchinfo = "SELECT * FROM login WHERE username='$username'";
+                 $result = $mysqli->query($fetchinfo);
+                 if (!$result) {
                     print($mysqli->error);
                     exit();
-                }
-                while ($row = $result->fetch_assoc()) {
-                    $name = $row['username'];
-                    $hashpw = $row['hashed_password'];
+                 }else if ($result && $result->num_rows == 1) {
+                      $row = $result->fetch_assoc();
+                      $hashpw = $row['hashed_password'];
+                      if (!password_verify($opassword, $hashpw)){
+                          $errlist[]="Incorrect old password.<br>";
+                      }
+                 }else{
+                      $errlist[]="Something wrong with your login status.<br>";
                  }
-
-                 if (password_hash($opassword, PASSWORD_DEFAULT) === $hashpw){
-                    echo "<p> Password change failed: incorrect old password.</p>";
-                    exit();
-                 } 
-
-                else if ($opassword == $npassword){
-                    echo "<p> Password change failed: old password and new password are the same. </p>";
-                    exit();
+             }
+             
+             $npassword = filter_input( INPUT_POST, 'npassword', FILTER_SANITIZE_STRING );
+             if (empty($npassword)){
+                 $errlist[]="Please enter the new password.<br>";
+             }else if ($opassword == $npassword){
+                 $errlist[]= "Password change failed: old password and new password are the same. <br>";
+             }
+             
+             $rpassword = filter_input( INPUT_POST, 'rpassword', FILTER_SANITIZE_STRING );
+             if (empty($rpassword)){
+                 $errlist[]="Please re-enter the new password.<br>";
+             }else if ($rpassword != $npassword){
+                 $errlist[]="Two passwords do not match.<br>";
+             }
+             
+             if (count($errlist)!=0){
+                 echo "<p class='error'>Submission unsuccessful. The following errors occur:<br>";
+                 foreach ($errlist as $error){
+                     echo "$error";
                  }
-
-                 else {
-                    $hashed_new_password = password_hash($npassword, PASSWORD_DEFAULT);
-                    $updatePW = "UPDATE login SET hashed_password = '$hashed_new_password' WHERE username = '$username'";
-                    print $updatePW;
-                    $result = $mysqli->query($updatePW);
-                    if (!$result) {
-                       print($mysqli->error);
-                       exit();
-                    }
-                    echo "<p>Password reset successful. Please <a href='logout.php'>logout</a> to log in again.";
+                 echo "</p>";
+             }else {
+                 $hashed_new_password = password_hash($npassword, PASSWORD_DEFAULT);
+                 $updatePW = "UPDATE login SET hashed_password = '$hashed_new_password' WHERE username = '$username'";
+                 $update = $mysqli->query($updatePW);
+                 if (!$update) {
+                     print($mysqli->error);
+                     exit();
                  }
-            }
-        }
+                 echo "<p>Password reset successful. Please <a href='logout.php'>logout</a> to log in again.";
+             }
+         }
         ?>        
     </body>
 </html>

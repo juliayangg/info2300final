@@ -22,14 +22,13 @@ function validYear(err, year){
 
 //add Album + addEvent
 used for validating 
-	- participant list, venue 
-	- eventName, event description, event history*/
+	- venue, eventName*/
 function validText(err, input){
 	if (input == ""){
 		msg(err, "Required");
 		return false;
 	}
-	else if (/^[A-Za-z\s]+$/.test(input)){
+	else if (/^[A-Za-z\s,]+$/.test(input)){
 		msg(err, "");
 		return true;
 	}
@@ -40,7 +39,7 @@ function validText(err, input){
 	return true;
 }
 
-//validating feedback which may contain .,"!*&$%#
+//validating participation list or feedback and event description, event history which may contain .,"!*&$%#
 function validFeedback(err,input){
 	if (input == ""){
 		msg(err, "Required");
@@ -51,7 +50,7 @@ function validFeedback(err,input){
 		return true;
 	}
 	else {
-		msg(err, "Must be valid feedback");
+		msg(err, "No special characters allowed");
 		return false;
 	}
 	return true;
