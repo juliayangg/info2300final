@@ -390,6 +390,7 @@ a.unstyled-link:link, a.unstyled-link:visited, a.unstyled-link:hover, a.unstyled
     display: inline-block;
     position: relative;
     margin-right: 8%;
+    margin-bottom: 2%;
 }
 
 .album-container img {

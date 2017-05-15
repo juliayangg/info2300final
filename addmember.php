@@ -79,9 +79,21 @@ if(!isset($_SESSION)) {
                 <input type="submit" class="button" name="intake" value="Add Member">
                 </form>
             <?php
+            $currentmember=array();
+            $membername="SELECT name FROM members";
+            $names = $mysqli->query($membername);
+            if (!$names) {
+                print($mysqli->error);
+                exit();
+            }else{
+                while ($namerow = $names->fetch_assoc()){
+                    $eachname = $namerow['name'];
+                    $currentmember[]=$eachname;
+                }
+            }
             
-            $invalidlist=array();
             if(isset($_POST["intake"])){
+                $invalidlist=array();
                 if (!isset($_FILES['newphoto'])){
                     echo '<p>Please select one photo to upload</p>';
                     exit();
@@ -89,31 +101,34 @@ if(!isset($_SESSION)) {
                 else {
                     $name = filter_input( INPUT_POST, 'uname', FILTER_SANITIZE_STRING );
                     if (empty($name)){
-                        $nameErr = "empty name";
+                        $nameErr = "Empty name entered.<br>";
                         $invalidlist[]=$nameErr;
                     }else if (!preg_match("/^[a-zA-Z' ]+$/",$name)){
-                        $nameErr = "invalid name";
+                        $nameErr = "Please enter a valid name.<br>";
                         $invalidlist[]=$nameErr;  
+                    }else if(in_array($name,$currentmember)){
+                        $nameErr = "Member already exists.<br>";
+                        $invalidlist[]=$nameErr; 
                     }
 
                     $year = filter_input( INPUT_POST, 'uyear', FILTER_SANITIZE_NUMBER_INT);
                     if ($year < 2010 || $year > 2020 ){
-                        $yearErr = "invalid year";
+                        $yearErr = "Please enter 4-digit number for the year.<br>";
                         $invalidlist[]=$yearErr;
                     }
 
                     $major = filter_input( INPUT_POST, 'umajor', FILTER_SANITIZE_STRING );
                     if (empty($major)){
-                        $majorErr = "empty major info";
+                        $majorErr = "Please enter the major info.<br>";
                         $invalidlist[]=$majorErr;
                     }else if (!preg_match("/^[a-zA-Z' ]+$/",$major)){
-                        $majorErr = "invalid major";
+                        $majorErr = "Please enter a valid major.<br>";
                         $invalidlist[]=$majorErr;
                     }
 
                     $pos = filter_input( INPUT_POST, 'position', FILTER_SANITIZE_STRING );
                     if (empty($pos)){
-                        $posErr = "empty position info";
+                        $posErr = "Please enter position info.<br>";
                         $invalidlist[]=$posErr;
                     } else {
                         $exists = false; 
@@ -124,7 +139,7 @@ if(!isset($_SESSION)) {
                             }
                         }
                         if (!$exists){
-                            $posErr = "invalid position";
+                            $posErr = "Please choose a valid position.<br>";
                             $invalidlist[]=$posErr;
                         }
                     }
@@ -142,18 +157,18 @@ if(!isset($_SESSION)) {
                             move_uploaded_file( $tempName, 'img/eboard/'.$originalName);
                             $_SESSION['photos'][] = $originalName;
                         } else if (!in_array($detectedType,$allowedTypes)){
-                            $photoErr = 'invalid photo type';
+                            $photoErr = 'Invalid photo type.<br>';
                             $invalidlist[]=$photoErr;
                         }else{
-                            $photoErr = 'photo upload error';
+                            $photoErr = 'Photo upload error.<br>';
                             $invalidlist[]=$photoErr;
                         }
                     }
                     
                     if (count($invalidlist)!=0) {
-                        echo "<p class='error'>Submission unsuccessful. The following errors occur:";
+                        echo "<p class='error'>Submission unsuccessful. The following errors occur:<br>";
                         foreach ($invalidlist as $msg){
-                             echo "&nbsp;$msg";
+                             echo "$msg";
                         }
                         echo "</p>";
                     }

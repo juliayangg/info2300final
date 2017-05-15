@@ -32,11 +32,13 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
 <body>
     <div class="messages">
         <h2>Manage photos</h2>
+        <p style="text-align:center;">If you did not find the album you are looking for, create a new album before submit photos.</p>
         <form action="uploadphoto.php" method="post" enctype="multipart/form-data">
             <p>
-                <label for="new-photos">Multiple photos upload: <br><br></label>
-                <input id="new-photos" type="file" name="newphotos[]" multiple>
+                <label for="new-photos">Multiple photos upload: </label>
+				<input id="new-photos" type="file" name="newphotos[]" multiple>
                 <br><br>
+                
                 Choose an album these photos belong to: <br><br>
                 <?php
                 require_once 'includes/config.php';
@@ -59,50 +61,43 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
         </form>
 
         <?php
-        $invalidlist=array();
-
+        
         if(isset($_POST["submit"])){
-            $albumErr="";
+            $invalidlist=array();
 
             $album = filter_input( INPUT_POST, 'albums', FILTER_SANITIZE_STRING );
             if (empty($album)){
-                $albumErr = "no album selected";
-                $invalidlist[]=$albumErr;
-            } else if (!preg_match("/^[a-zA-Z0-9' ]+$/",$album)){
-                $albumErr = "invalid major";
-                $invalidlist[]=$albumErr;
-            }
-
-            //no album selected, immediately exit
-            if (!empty($albumErr)){
-                echo  "<p class='error'>Submission unsuccessful. The following errors have occured: $albumErr";
-                exit();
+                $invalidlist[]="no album selected";
             }
 
             if (!isset($_FILES['newphotos'])){
-                echo "<p> Submission unsuccessful. Please select at least one image to upload</p";
+                $invalidlist[]="<p> Submission unsuccessful. Please select at least one image to upload</p";
                 exit();
             } 
-            else if ( isset( $_FILES['newphotos'] ) ) {
+            else if (isset( $_FILES['newphotos'])){
+                $_SESSION['photos']=array();
                 $newPhotos = $_FILES['newphotos'];
-                for ( $i = 0; $i < count( $newPhotos['name'] ); $i++) {
-                    $originalName = $newPhotos['name'][$i];
+				for ( $i = 0; $i < count( $newPhotos['name'] ); $i++) {
+					$originalName = $newPhotos['name'][$i];
 
                     $allowedTypes = array("image/png", "image/jpeg", "image/gif");
                     $detectedType = $newPhotos['type'][$i];
-
-                    if ($newPhotos[ 'error' ][$i] == 0 && in_array($detectedType,$allowedTypes) ) {
-                        $tempName = $newPhotos[ 'tmp_name' ][$i];
-                        move_uploaded_file( $tempName,
-                            "img/photos/$originalName" );
-                        $_SESSION['photos'][ ] = $originalName;
-                        print("$originalName was uploaded successfully.");
+                    
+                    $photonames=array();
+                    if ($newPhotos['error'][$i] == 0 && in_array($detectedType,$allowedTypes) ) {
+                        $tempName = $newPhotos['tmp_name'][$i];
+                        move_uploaded_file( $tempName,"img/photos/$originalName" );
+                        $_SESSION['photos'][] = $originalName;
                     } else if (!in_array($detectedType,$allowedTypes)){
-                            $photoErr = 'invalid photo type';
+                        $photoErr = 'Invalid photo type.<br>';
+                        if (!in_array($photoErr,$invalidlist)){
                             $invalidlist[]=$photoErr;
-                    } else{
-                            $photoErr = 'photo upload error';
+                        }   
+                    }else{
+                        $photoErr = 'Photo upload error';
+                        if (!in_array($photoErr,$invalidlist)){
                             $invalidlist[]=$photoErr;
+                        } 
                     }
                 }
             }
@@ -116,19 +111,17 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
             } 
 
             else if (count($invalidlist)==0){
-                for ( $i = 0; $i < count( $newPhotos['name'] ); $i++) {
-                    $insertImg = "INSERT INTO photos VALUES (NULL, 'img/photos/$originalName', $album)";
-                    echo "$insertImg";
+                foreach ($_SESSION['photos'] as $photo){
+                    $insertImg = "INSERT INTO photos VALUES (DEFAULT, 'photos/$photo', $album)";
                     $result = $mysqli->query($insertImg);
-                        if (!$result) {
-                            print($mysqli->error);
-                            exit();
-                        }
+                    if (!$result) {
+                        print($mysqli->error);
+                        exit();
+                    }
                 }
-                
-                echo "<p>Picture(s) uploaded successfully. View them <a href=photos.php?sort=photos'>here</a>";
+                echo "<p>Picture(s) uploaded successfully. View them <a href='photos.php?sort=photos'>here</a>";
+                $_SESSION['photos']=array();
             }
-
         }
         ?>          
     </div>
