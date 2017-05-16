@@ -23,7 +23,7 @@ if(!isset($_SESSION)) {
     <?php include 'includes/nav.php';?>
         <div class="sidebar">        
         <?php
-            if (isset($id)){
+            if (isset($_GET['id'])){
                 $id = $_GET['id'];
             }else{
                 $id = "default";
