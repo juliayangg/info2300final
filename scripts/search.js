@@ -1,36 +1,19 @@
+$(document).ready(function () {
+    $('#search-text').keyup(function () {
+        console.log("calling search");
+        search($('#search-text').val());
+    });
+});
 
-//still deciding if we want to use JavaScript compared to PHP
-function login(username, hash_password) {
-	//parameters should be fetched from forms using PHP and passed into this js function
 
-	var request = $.ajax({
-		type: 'GET',
-		url: "data/login.json",
-		dataType: "json"
-	}); // will use mysqli object in PHP to get the login data from 
-	    //the table to store in the login.json
-
-	request.done(function(data) {
-		var loginArray = $.map(data, function(value, index) {
-			return [value];
-		});
-
-		//array should now be accessible like loginArray['username'] and loginArray['hash_password']
-		if (loginArray['username'] == username && loginArray['hash_password'] == hash_password) 
-			return true;
-		else
-			return false;
-		//will return a boolean for isLoggedIn to enable to disable admin privileges
-	}
-}
-
+////event name, year, and venue of albums
 function search(query) {
 	//parameters should be fetched from the search form using PHP and passed into this js function
 
 	//events = eventSearch(query);
 	//first calls function eventSearch(query), which will look almost identical to this function
 	//eventSearch(query) will return back the events in an array. The indices will be the eventIDs
-
+    
 	var request = $.ajax({
 		type: 'GET',
 		url: "data/albums.json",
@@ -56,14 +39,38 @@ function search(query) {
 	    */
 
 	request.done(function(data) {
-		var results = [];
-		var albumArray = $.map(data.data, function) {
+        $(".gallery").empty();
+		var result = [];
+        console.log(data.data);
+		var albumArray = $.map(data.data, function(value, index) {
 			return [value];
 		});
 
 		albumArray.forEach(function(album) {
-			if (album.album_id == query || album.year == query || events.hasOwnProperty(parseInt(album.album_id)))
-				albumArray.push(album.album_id);
+            console.log(query);
+            console.log(album.name);
+            console.log(album.name.match(query));
+            
+            var containsName = album.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
+            var containsVenue = album.venue.toLowerCase().indexOf(query.toLowerCase()) > -1;
+            
+			if ((containsName || album.year.match(query) || containsVenue) && album.cover_photo != "N/A" ) { 
+                $('.gallery').append(albumRender(album));
+            }
 		});
 	});
+    
+    request.fail(function (xhr, textStatus, errorThrown) {
+        console.log(xhr.responseText);
+    });
+}
+
+function albumRender(album) {
+    return "<div class='album-container'>" +
+                "<a class='unstyled-link' href=album.php?aid=" + album.album_id + ">" + 
+                    "<img src=img/" + album.cover_photo + ">" +
+                     "<span class='deets'><span>Learn More</span></span>" + 
+                "</a>" +
+                "<h2 class='album-title'>" + album.name + "</h2>    " + album.year +
+            "</div>";
 }

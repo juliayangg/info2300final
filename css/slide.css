@@ -38,5 +38,5 @@
 .jssora22r:hover { background-position: -190px -31px; }
 .jssora22l.jssora22ldn { background-position: -250px -31px; }
 .jssora22r.jssora22rdn { background-position: -310px -31px; }
-.jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
-.jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
+.jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; }
+.jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; }

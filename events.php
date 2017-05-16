@@ -19,9 +19,8 @@ if(!isset($_SESSION)) {
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
     <body>
+    <?php include 'includes/nav.php';?>
         <div class="sidebar">        
         <?php
             if (isset($id)){
@@ -63,7 +62,7 @@ if(!isset($_SESSION)) {
                 }
 
                 if ($eid == $id){
-                    print("<li class='selected'><a href=events.php?id=".$eid.">".$name."</a></li>");
+                    print("<li class='selected'><a href='events.php?id=".$eid."'>".$name."</a></li>");
                     
                     $pageContent .= '<div class="textbeside">';
                     $pageContent .= "<h2>$name</h2>";
@@ -72,7 +71,7 @@ if(!isset($_SESSION)) {
                     $pageContent .= "<h3>History</h3>";
                     $pageContent .= "<p>$history</p></div>";
                 } else {
-                    print("<li><a href=events.php?id=".$eid.">".$name."</a></li>");
+                    print("<li><a href='events.php?id=".$eid."'>".$name."</a></li>");
                 }
             }
             echo "</ul></div>";
@@ -81,35 +80,7 @@ if(!isset($_SESSION)) {
             echo "<div class='content'>";
             echo $pageContent;
             echo "</div>";
-
-            /* Psuedocode:
-            After printing out the sidebar, we need to print out all relevant information from the events table. 
-                        
-            Step 1: deal with the special case when id = default, which in this case means display all events.
-                Thus, if ($id == "default"){
-                $sql = "SELECT * FROM events"
-                }
-            
-            Step 2: else (in other cases), $sql = "SELECT * FROM events WHERE event_id =".$id
-            
-            Step 3: $info = mysqli -> query($sql)
-            
-            Step 4: while ($detail = $info -> fetch_assoc())
-                print out all information returned.
-                
-            Step 5: Present image slider when a single event has been chosen. $pictures = $mysqli -> query('SELECT * FROM photos INNER JOIN albums ON photos.album_id = albums.album_id WHERE albums.event_id = $id')
-            
-            Step 6: print out all file path in the format of <img class="picslides" src=file_path style="width:100%">
-            
-            Step 7: import the javascript 
-            <script type="text/javascript" src="scripts/imageslide.js"></script>
-
-            Step 8: additional styling may be needed in case of weird size of pictures, but we'll leave it alone now. 
-
-            -->
-            */
-
-
             ?>
+        </div>
     </body>
 </html>

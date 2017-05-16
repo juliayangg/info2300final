@@ -20,11 +20,9 @@ if(!isset($_SESSION)) {
             add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
     <body>
-               
-            <?php
+    <?php include 'includes/nav.php';?>
+        <?php
             $pid = $_GET['pid'];
             
             /* Psuedocode:            

@@ -19,9 +19,8 @@ if(!isset($_SESSION)) {
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
     <body>
+    <?php include 'includes/nav.php';?>
         <div class="contacts">
             <h2>Contact CME</h2>
             <div class="column1">

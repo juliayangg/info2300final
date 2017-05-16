@@ -19,24 +19,10 @@ if(!isset($_SESSION)) {
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
-    <body>       
+    <body>
+    <?php include 'includes/nav.php';?>       
         <?php
         $aid = $_GET['aid'];
-
-        /* Psuedocode:            
-        Step 1: $query = SELECT * FROM albums INNER JOIN events ON events.event_id = albums.event_id WHERE album_id = $aid
-
-        Step 2: $result = $mysqli -> query ($query)
-
-        Step 3: display relevant text information of this album at the top. 
-
-        Step 4: $sql = SELECT * FROM photos WHERE album_id = $aid and $photos = $mysqli -> query ($sql)
-
-        Step 5: display all photos in that album ($photos). Allow users to click on the photo to view image details (href=photo.php?pid=$photo_id)
-
-        */
 
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $mysqli->query("SELECT * FROM albums INNER JOIN events ON events.event_id = albums.event_id WHERE album_id=$aid");
@@ -44,25 +30,30 @@ if(!isset($_SESSION)) {
         echo "<div class=single-album-content>";
         
         while ($row = $result->fetch_assoc()) {
-            echo "<h2 class='single-album-title'>" . $row['name'] . "</h2>";
-            echo "<b>Participants</b>: " . $row['participant_List'] . "<br>";
-            echo "<b>Feedback</b>: " . $row['feedbak'] . "<br>";
-            echo "<b>Venue</b>: " . $row['venue'] . "<br><br>";
-            echo "<b>History</b>: " . $row['history'] . "<br><br>";
-            echo "<b>Description</b>: " . $row['description'] . "<br><br>";
+            echo "<div class='albuminfo'>";
+            $name = $row['name'];
+            $feed = $row['feedbak'];
+            $plist = $row['participant_List'];
+            $venue = $row['venue'];
+            $his = $row['history'];
+            $dis = $row['description'];
+            echo "<h2 class='single-album-title'>" . $name . "</h2>";
+            echo "<p><b>Participants</b>: " . $plist . "</p>";
+            echo "<p><b>Feedback</b>: " .$feed . "</p>";
+            echo "<p><b>Venue</b>: " . $venue . "</p>";
+            echo "<p><b>History</b>: " .$his . "</p>";
+            echo "<p><b>Description</b>: " .$dis . "</p>";
             $photo_result = $mysqli->query("SELECT * FROM photos WHERE album_id = $aid");
-            
+            echo "</div>";
             echo "<div class='gallery'>";
             while ($photo_row = $photo_result->fetch_assoc()) {
                 echo "<div class='single-album-container'>";
-                    echo "<img src=img/" . $photo_row['file_path'] . ">";
+                echo "<img src=img/" . $photo_row['file_path'] . " alt='Cover Photo'>";
                 echo "</div>";
             }
-
             echo "</div>";
-            echo "</div>";  
+        echo "</div>";  
         }
-
         ?>
     </body>
 </html>

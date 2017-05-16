@@ -1,14 +1,12 @@
 <?php
-    if(!isset($_SESSION)) {
-        session_start(); 
-    }
+if(!isset($_SESSION)) {
+    session_start(); 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width">
 
         <title>Home | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -23,10 +21,8 @@
             add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    <?php include 'includes/nav.php';?>
-    
     <body>
-        <!-- #region Jssor Slider Begin -->
+    <?php include 'includes/nav.php';?>
         <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;visibility:hidden;">
             <!-- Loading Screen -->
             <div data-u="loading" style="position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);">
@@ -35,15 +31,15 @@
             </div>
             <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;">
                 <div>
-                    <img data-u="image" src="img/banner1.jpg" />
+                    <img data-u="image" src="img/banner1.jpg" alt="banner"/>
                     <div style="position:absolute;top:30px;left:30px;width:480px;height:120px;z-index:0;font-size:50px;color:#ffffff;line-height:60px;font-family: 'Raleway', sans-serif;">Cornell Media &amp; Entertainment</div>
                     <div style="position:absolute;top:300px;left:30px;width:720px;height:120px;z-index:0;font-size:30px;color:#ffffff;line-height:38px;font-family: 'Montserrat', sans-serif;">CME is the first student-led multi-purpose organization on campus. Come and join us for the most fun at Cornell! </div>
                 </div>
                 <div>
-                    <img data-u="image" src="img/banner2.jpg" />
+                    <img data-u="image" src="img/banner2.jpg" alt="banner"/>
                 </div>
                 <div>
-                    <img data-u="image" src="img/banner3.jpg" />
+                    <img data-u="image" src="img/banner3.jpg" alt="banner"/>
                 </div>
             </div>
             <!-- Bullet Navigator -->

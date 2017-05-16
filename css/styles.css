@@ -90,6 +90,7 @@ p a{
 #logo{
     padding:20px;
     padding-left:7%;
+    width:15%;
 }
 
 h1{
@@ -100,7 +101,7 @@ h1{
     font-weight: 900;
     font-size: 250%;
     font-family: 'Raleway', sans-serif;
-    text-shadow: 1px, 1px, #e6e6e6;
+    text-shadow: 1px 1px #e6e6e6;
 }
 
 .greyContainer{
@@ -217,7 +218,7 @@ h1{
     margin-left: 15%;
 }
 
-#gallery {
+.gallery {
     display: inline-block;  
     margin-left: 3%;
     width: 100%;
@@ -331,7 +332,7 @@ table td{
   padding:7px 10px;
   font-size:12px;
   background-color:#ffffff;
-  font-family:Raleway;
+  font-family: "Raleway";
   text-align: center;
   text-decoration: none;
   color:black;
@@ -533,4 +534,12 @@ h2.album-title {
     float:right;
     margin-right: 5%;
     font-family: 'Raleway', sans-serif;
+}
+
+.albuminfo{
+    width: 95%;
+    margin-left: 3%;
+}
+.albuminfo p{
+    text-align: left;
 }

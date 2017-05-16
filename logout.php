@@ -13,31 +13,26 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width">
-
         <title>Logout | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <?php 
         require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
-    <body>
+    <body>   
+        <?php include 'includes/nav.php';?>
         <div class="messages">
             <?php
-                if ( $olduser ) {
-                    print("<p>Thanks for using our page, $olduser!</p>");
-                    print("<p>Return to our <a href='login.php'>login page</a>.</p>");
-                } else {
-                    print("<p>You haven't logged in.</p>");
-                    print("<p>Go to our <a href='login.php'>login page</a>.</p>");
-                }
+            if ( $olduser ) {
+                print("<p>Thanks for using our page, $olduser!</p>");
+                print("<p>Return to our <a href='login.php'>login page</a>.</p>");
+            } else {
+                print("<p>You haven't logged in.</p>");
+                print("<p>Go to our <a href='login.php'>login page</a>.</p>");
+            }
             ?>
         </div>
-	</body>
+    </body>
 </html>

@@ -16,15 +16,18 @@ if(!isset($_SESSION)) {
         <?php 
         require_once "includes/functions.php";
         require_once "includes/config.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
     <body>
-        <?php
-        $type = $_GET['type'];
+    <?php include 'includes/nav.php';?>
+    <?php
+        if (isset($_GET['type'])){
+            $type = $_GET['type'];
+        }else{
+            $type = "default";
+        }
+        
         
         sideMenu($type);
         
@@ -65,7 +68,7 @@ if(!isset($_SESSION)) {
                 
         function presVPgallery() {
             echo '<h2>PRESIDENT/VICE-PRESIDENT</h2>';
-            echo '<div id="gallery">';
+            echo '<div class="gallery">';
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             $result = $mysqli->query("SELECT * FROM members WHERE position LIKE '%president%' AND active = 1");
             $presidentString = "";
@@ -79,13 +82,13 @@ if(!isset($_SESSION)) {
                 
                 if (strpos($position, 'vice') === false) { //PRESIDENT
                     $presidentString .= '<div class="picture">';
-                    $presidentString .= "<img src='img/$file_path'>";
-                    $presidentString .= "<span class='deets'>   <span>$name<hr><br>$major&nbsp;$grad_year<hr><br>President</span></span>";
+                    $presidentString .= "<img src='img/$file_path' alt='$name'>";
+                    $presidentString .= "<span class='deets'>   <span>$name<br><br>$major&nbsp;$grad_year<br><br>President</span></span>";
                     $presidentString .=  "</div>";
                 } else { //VICE-PRESIDENT
                     $vpString .= '<div class="picture">';
-                    $vpString .= "<img src='img/$file_path'>";
-                    $vpString .= "<span class='deets'>   <span>$name<hr><br>$major&nbsp;$grad_year<hr><br>Vice-President</span></span>";
+                    $vpString .= "<img src='img/$file_path' alt='$name'>";
+                    $vpString .= "<span class='deets'>   <span>$name<br><br>$major&nbsp;$grad_year<br><br>Vice-President</span></span>";
                     $vpString .=  "</div>";
                 }
             }
@@ -96,7 +99,7 @@ if(!isset($_SESSION)) {
        
         function otherGallery($type) {
             echo '<h2>'. strtoupper($type) . '</h2>';
-            echo '<div id="gallery">';
+            echo '<div class="gallery">';
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             $result = $mysqli->query("SELECT * FROM members WHERE position LIKE '%$type%' AND active = 1");
             while ($row = $result->fetch_assoc()) {
@@ -107,9 +110,9 @@ if(!isset($_SESSION)) {
                 $major = $row['major'];
                 
                 echo '<div class="picture">';
-                echo "<img src='img/$file_path'>";
+                echo "<img src='img/$file_path' alt='$name'>";
                 $typeTitle = ucfirst($type);
-                echo "<span class='deets'><span>$name<hr><br>$major&nbsp;$grad_year<hr><br>$typeTitle</span></span>";
+                echo "<span class='deets'><span>$name<br><br>$major&nbsp;$grad_year<br><br>$typeTitle</span></span>";
                 echo  "</div>"; 
             }
             echo '</div>';
@@ -117,7 +120,7 @@ if(!isset($_SESSION)) {
             
         function alumGallery() {
             echo '<h2>ALUMNI MEMBERS</h2>'; 
-            echo '<div id="gallery">';
+            echo '<div class="gallery">';
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             $result = $mysqli->query("SELECT * FROM members WHERE active = 0");
             
@@ -129,7 +132,7 @@ if(!isset($_SESSION)) {
                 $major = $row['major'];
                 
                 echo '<div class="picture">';
-                echo "<img src='img/$file_path'>";
+                echo "<img src='img/$file_path' alt='$name'>";
                 echo "<span class='deets'><span>$name<br>$major&nbsp;$grad_year<br>Alumni</span></span>";
                 echo  "</div>";   
             }

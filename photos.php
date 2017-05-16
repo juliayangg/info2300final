@@ -7,22 +7,20 @@ if(!isset($_SESSION)) {
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width">
 
         <title>Photos | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/search.js"></script>
         <?php 
-        require_once "includes/functions.php";
-        //add_versioned_file( 'js/scripts.js', 'JavaScript' );
-        add_versioned_file( 'css/styles.css', 'Style' );
+            include 'includes/nav.php'; 
+            require_once "includes/functions.php";
+            require_once 'includes/config.php';
+            add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php'; require_once 'includes/config.php'; ?>
-    <body>      
-        
+    <body> 
         <br>
         <?php
             $sort = $_GET['sort'];
@@ -37,22 +35,16 @@ if(!isset($_SESSION)) {
             }
             echo '</ul></div>';
             
-            /* Psuedocode:            
-            Step 1: if $sort == "albums", then $query = 'SELECT * FROM albums"
-            
-            Step 2: $result = $mysqli -> query ($query). print out all relevant information of albums and display them in an album format. We can't do it now because we are still waiting for clients' materials. 
-            
-            Step 3: give each album a link so if users click on the album they will be directed to a page with a list of photos in that album and specific info of that album. (href = album.php?aid=$album_id)
-            
-            Step 4: if $sort == "photos", then $query = 'SELECT * FROM photos"
-            
-            Step 5: $result = $mysqli -> query ($query). Print out all photos, and allow audience to click on the photo, and will be directed to a page with specific details of that photo. (href = photo.php?pid=$photo_id)
-            */
-            
             echo "<div class='content'>";
+            
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
+                echo "<div class='top-bar'>";
+                    echo '<h3>Please be patient. The photos may take some time to load.</h3>';
+                    echo "<div class='search'> Search: <input type='text' id='search-text' placeholder='Event, Year or Venue'></div>";
+                echo "</div>";
                 $result = $mysqli->query("SELECT * FROM `albums` INNER JOIN events WHERE albums.event_id = events.event_id");
+                echo "<div class='gallery'>";
                 while ($row = $result->fetch_assoc()) {
                     $albumID = $row['album_id'];
                     $photo_result = $mysqli->query("SELECT * FROM `photos` WHERE photos.album_id=$albumID LIMIT 1");
@@ -66,12 +58,13 @@ if(!isset($_SESSION)) {
                         echo "</div>";
                     }
                 }
+                echo "</div>";
             } else {
                 $result = $mysqli->query("SELECT * FROM photos");
                 while ($row = $result->fetch_assoc()) {
-                    echo "<a class='unstyled-link' href=photo.php?pid=" . $row['photo_id'] . ">";
+                    echo "<a class='unstyled-link' href='photo.php?pid=" . $row['photo_id'] . "'>";
                     echo "<div class='image-container'>";
-                        echo "<img src=img/" . $row['file_path'] . ">";
+                        echo "<img src=img/" . $row['file_path'] . " alt='CME photos'>";
                         echo "<span class='deets'><span>Learn More</span></span>";
                     echo "</div>";
                     echo "</a>";
@@ -79,9 +72,6 @@ if(!isset($_SESSION)) {
             }
             echo "</div>";
         ?>
-
-        <!--Psuedocode:
-        Call to the serach function in search.js-->
 
     </body>
 </html>

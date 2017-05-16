@@ -19,9 +19,8 @@ if(!isset($_SESSION)) {
         add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
-    
-    <?php include 'includes/nav.php';?>
     <body>
+    <?php include 'includes/nav.php';?>
         <div class='messages'>
             <?php
             if (isset($_SESSION['logged_user_by_sql'])) {

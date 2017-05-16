@@ -55,7 +55,7 @@
     <a href="index.php">Home</a>
 </div>
 <div id="logoDiv">
-    <a href="index.php"><img src="img/cme.png" id="logo" alt="CME Logo" width="15%"></a>
-    <h1>Cornell Media & Entertainment</h1>
-    <div class="greyContainer"><a href="index.php">Cornell Media & Entertainment</a></div>
+    <a href="index.php"><img src="img/cme.png" id="logo" alt="CME Logo"></a>
+    <h1>Cornell Media &amp; Entertainment</h1>
+    <div class="greyContainer"><a href="index.php">Cornell Media &amp; Entertainment</a></div>
 </div>

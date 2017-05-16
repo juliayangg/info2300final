@@ -32,7 +32,9 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
 <body>
     <div class="messages">
         <h2>Manage photos</h2>
-        <p style="text-align:center;">If you did not find the album you are looking for, create a new album before submit photos.</p>
+        <p style="text-align:center;">*If you did not find the album you are looking for, create a new album before submit photos.</p>
+        <p style="text-align:center;">*If you uploaded a lot of photos at one time, please be patient until success message shows up.</p>
+
         <form action="uploadphoto.php" method="post" enctype="multipart/form-data">
             <p>
                 <label for="new-photos">Multiple photos upload: </label>
