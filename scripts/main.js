@@ -79,3 +79,9 @@ function msg(id, error){
 	console.log("id is" , id);
 	$("#" + id).text(error);
 }
+
+
+//$(document).ready(function () {
+//    var height = $('.container').height() + $('#logoDiv').height();
+//    $('.sidebar').height(height);
+//});

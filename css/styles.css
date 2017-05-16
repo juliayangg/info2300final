@@ -100,7 +100,7 @@ h1{
     color:#b31b1b;
     font-weight: 900;
     font-size: 250%;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sanstext-serif;
     text-shadow: 1px 1px #e6e6e6;
 }
 
@@ -175,7 +175,6 @@ h1{
     top: 0;
     z-index: 0;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 .sidebar .search {
@@ -425,6 +424,20 @@ h2.album-title {
     display: inline;
 }
 
+.top-bar {
+    margin-bottom: 2%;
+}
+
+.top-bar h3 {
+    display: inline;
+}
+
+.top-bar .search{
+    float:right;
+    margin-right: 5%;
+    font-family: 'Raleway', sans-serif;
+}
+
 
 /* SINGLE PHOTO */
 
@@ -535,11 +548,9 @@ h2.album-title {
     margin-right: 5%;
     font-family: 'Raleway', sans-serif;
 }
-
 .albuminfo{
     width: 95%;
     margin-left: 3%;
 }
 .albuminfo p{
     text-align: left;
-}

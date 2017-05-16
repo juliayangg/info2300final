@@ -1,0 +1,44 @@
+{
+    "data": [
+        {
+            "album_id": "1",
+            "year": "2015",
+            "participant_list": "Xin Hao, Zhiwen Huang, Xin Lin, Yuxuan Ma, Magic Peng, Andrew Zeng, Emily Xiong, Zihan Wang, Connie Sun, Teresa Pan, Siyu Yang",
+            "feedback": "\"I had so much fun in this event! I hope to participate more in this event\" - Xin Hao",
+            "venue": "Hollister Hall",
+            "event_id": "1",
+            "name": "Running Cornellians",
+            "cover_photo": "photos/RM201501.JPG"
+        },
+        {
+            "album_id": "4",
+            "year": "2015",
+            "participant_list": "Athena Huang, Junhua Wu, Yuxuan Ma, Xin Lin, James Xu, Xinxin Wu, Mia Chen, Eric Huang, Connie Sun, Terasa Pan, Chelsea Luo, Dongze Yue",
+            "feedback": "\"Thanks to this event, I found my current boyfriend.\" -Chelsea; \"It is so much fun to watch as an audience!\" -Connie",
+            "venue": "Klarman Hall",
+            "event_id": "5",
+            "name": "If You Are the One",
+            "cover_photo": "photos/BLTY201501.jpg"
+        },
+        {
+            "album_id": "5",
+            "year": "2016",
+            "participant_list": "Mia Chen, Kemian Ma, Yuxuan Ma, Xuehua Xiao, Jenny Lei, Aobei Cheng, Michael Yuan",
+            "feedback": "\"Great event, I enjoyed it so much!\" -Jenny Lei ",
+            "venue": "Hollister Hall",
+            "event_id": "4",
+            "name": "Micro Film",
+            "cover_photo": "N/A"
+        },
+        {
+            "album_id": "6",
+            "year": "2017",
+            "participant_list": "Mei Lee, Yuqi Zhang, Qin Lin, Alan Du, Adam Wang, Alanis Yu, Allen Chen, Aaron Li",
+            "feedback": "\"Interesting game! I love it, but everyone else is so good at this game lol\" -MeI Lee",
+            "venue": "Goldwin Smith Hall",
+            "event_id": "4",
+            "name": "The Werewolves",
+            "cover_photo": "N/A"
+        }
+    ]
+}
