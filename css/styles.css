@@ -409,7 +409,7 @@ a.unstyled-link:link, a.unstyled-link:visited, a.unstyled-link:hover, a.unstyled
 
 .album-container img {
     max-height: 100%;
-    max-width: 100%;
+    width: 100%;
 }
 
 .album-container:hover img {

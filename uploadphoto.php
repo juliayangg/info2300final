@@ -77,7 +77,6 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
                 exit();
             } 
             else if (isset( $_FILES['newphotos'])){
-                $_SESSION['photos']=array();
                 $newPhotos = $_FILES['newphotos'];
 				for ( $i = 0; $i < count( $newPhotos['name'] ); $i++) {
 					$originalName = $newPhotos['name'][$i];
@@ -121,7 +120,7 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
                         exit();
                     }
                 }
-                echo "<p>Picture(s) uploaded successfully. View them <a href='photos.php?sort=photos'>here</a>";
+                echo "<p>Picture(s) uploaded successfully. View them <a href='album.php?aid=$album'>here</a>";
                 $_SESSION['photos']=array();
             }
         }

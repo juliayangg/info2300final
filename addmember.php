@@ -179,10 +179,10 @@ if(!isset($_SESSION)) {
 
                         $insertMember = "INSERT INTO members VALUES (DEFAULT, '$name', $year, '1', '$major', '$pos', '$picpath')";
                         $result = $mysqli->query($insertMember);
-                                if (!$result) {
-                                    print($mysqli->error);
-                                    exit();
-                                }
+                        if (!$result) {
+                            print($mysqli->error);
+                            exit();
+                        }
                         echo "<p>Information of $name is successfully updated.</a>";
                     }
                 }
