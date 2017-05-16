@@ -77,7 +77,6 @@ if (!isset($_SESSION['logged_user_by_sql']) ){
                 exit();
             } 
             else if (isset( $_FILES['newphotos'])){
-                $_SESSION['photos']=array();
                 $newPhotos = $_FILES['newphotos'];
 				for ( $i = 0; $i < count( $newPhotos['name'] ); $i++) {
 					$originalName = $newPhotos['name'][$i];
