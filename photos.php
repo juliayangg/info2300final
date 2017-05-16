@@ -36,13 +36,14 @@ if(!isset($_SESSION)) {
             echo '</ul></div>';
             
             echo "<div class='content'>";
-            echo "<div class='top-bar'>";
-                echo '<h3>Please be patient. The photos may take some time to load.</h3>';
-                echo "<div class='search'> Search: <input type='text' id='search-text' placeholder='Event, Year or Venue'></div>";
-            echo "</div>";
+            
 
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
+                echo "<div class='top-bar'>";
+                    echo '<h3>Please be patient. The photos may take some time to load.</h3>';
+                    echo "<div class='search'> Search: <input type='text' id='search-text' placeholder='Event, Year or Venue'></div>";
+                echo "</div>";
                 $result = $mysqli->query("SELECT * FROM `albums` INNER JOIN events WHERE albums.event_id = events.event_id");
                 echo "<div class='gallery'>";
                 while ($row = $result->fetch_assoc()) {
