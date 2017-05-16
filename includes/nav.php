@@ -17,14 +17,14 @@
     }
     ?>
     <div class="dropdown">
-        <button class="dropbtn"><a href="photos.php?sort=albums">Photos</a></button>
+        <button class="dropbtn">Photos</button>
         <div class="dropdown-content">
             <a href="photos.php?sort=photos">All Photos</a>
             <a href="photos.php?sort=albums">All Albums</a>
         </div>
     </div> 
     <div class="dropdown">
-        <button class="dropbtn"><a href="events.php?id=default">Events</a></button>
+        <button class="dropbtn">Events</button>
         <div class="dropdown-content">
         <?php
         require_once 'includes/config.php';
@@ -43,7 +43,7 @@
         </div>
     </div> 
     <div class="dropdown">
-        <button class="dropbtn"><a href="eboard.php?type=default">Eboard</a></button>
+        <button class="dropbtn">Eboard</button>
         <div class="dropdown-content">
             <a href="eboard.php?type=presvp">President/VP</a>
             <a href="eboard.php?type=multimedia">Multimedia</a>

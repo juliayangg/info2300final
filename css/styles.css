@@ -45,19 +45,32 @@ p a{
 .dropdown {
     float: right;
     overflow: hidden;
+    /*padding: 20px 30px;*/
 }
 
 .dropdown .dropbtn {
-    font-size: 16px;    
+    font-size: 16px;  
+    margin: 20px 30px;  
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
     background-color: inherit;
     padding:0;
+    text-transform: uppercase;
+
+/*    float: right;
+    font-size: 16px;
+    color: #f8f8f8;
+    text-align: center;
+    padding: 20px 30px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight:500;
+    text-decoration: none;*/
+
 }
 
-.container a:hover, .dropdown:hover .dropbtn {
+.container a:hover, .dropdown:hover {
     background-color: #9c1717;
 }
 
