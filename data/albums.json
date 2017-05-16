@@ -28,7 +28,7 @@
             "venue": "Hollister Hall",
             "event_id": "4",
             "name": "Micro Film",
-            "cover_photo": "N/A"
+            "cover_photo": "photos/RM201511.JPG"
         },
         {
             "album_id": "6",
@@ -38,7 +38,7 @@
             "venue": "Goldwin Smith Hall",
             "event_id": "4",
             "name": "The Werewolves",
-            "cover_photo": "N/A"
+            "cover_photo": "photos/BLTY201501.jpg"
         }
     ]
 }

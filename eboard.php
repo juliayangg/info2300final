@@ -133,7 +133,7 @@ if(!isset($_SESSION)) {
                 
                 echo '<div class="picture">';
                 echo "<img src='img/$file_path' alt='$name'>";
-                echo "<span class='deets'><span>$name<br>$major&nbsp;$grad_year<br>Alumni</span></span>";
+                echo "<span class='deets'><span>$name<br><br>$major&nbsp;$grad_year<br><br>Alumni</span></span>";
                 echo  "</div>";   
             }
             echo '</div>';

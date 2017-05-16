@@ -11,7 +11,7 @@ if(!isset($_SESSION)) {
         <title>Photos | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="scripts/search.js"></script>
         <?php 
             include 'includes/nav.php'; 
@@ -37,6 +37,7 @@ if(!isset($_SESSION)) {
             
             echo "<div class='content'>";
             
+
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
                 echo "<div class='top-bar'>";
@@ -60,6 +61,7 @@ if(!isset($_SESSION)) {
                 }
                 echo "</div>";
             } else {
+                echo '<h3>Please be patient. The photos may take some time to load.</h3>';
                 $result = $mysqli->query("SELECT * FROM photos");
                 while ($row = $result->fetch_assoc()) {
                     echo "<a class='unstyled-link' href='photo.php?pid=" . $row['photo_id'] . "'>";
