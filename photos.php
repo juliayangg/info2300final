@@ -11,13 +11,16 @@ if(!isset($_SESSION)) {
         <title>Photos | Cornell Media and Entertainment</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/search.js"></script>
         <?php 
-        require_once "includes/functions.php";
-        add_versioned_file( 'css/styles.css', 'Style' );
+            include 'includes/nav.php'; 
+            require_once "includes/functions.php";
+            require_once 'includes/config.php';
+            add_versioned_file( 'css/styles.css', 'Style' );
         ?>
     </head>
     <body> 
-    <?php include 'includes/nav.php'; require_once 'includes/config.php'; ?>
         <br>
         <?php
             $sort = $_GET['sort'];
@@ -35,12 +38,13 @@ if(!isset($_SESSION)) {
             echo "<div class='content'>";
             echo "<div class='top-bar'>";
                 echo '<h3>Please be patient. The photos may take some time to load.</h3>';
-                echo "<div class='search'> Search: <input type='text' placeholder='Event, Year or Venue'></div>";
+                echo "<div class='search'> Search: <input type='text' id='search-text' placeholder='Event, Year or Venue'></div>";
             echo "</div>";
 
             $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             if ($sort == "albums") {
                 $result = $mysqli->query("SELECT * FROM `albums` INNER JOIN events WHERE albums.event_id = events.event_id");
+                echo "<div class='gallery'>";
                 while ($row = $result->fetch_assoc()) {
                     $albumID = $row['album_id'];
                     $photo_result = $mysqli->query("SELECT * FROM `photos` WHERE photos.album_id=$albumID LIMIT 1");
@@ -54,8 +58,10 @@ if(!isset($_SESSION)) {
                         echo "</div>";
                     }
                 }
+                echo "</div>";
             } else {
                 $result = $mysqli->query("SELECT * FROM photos");
+                echo "<div class='gallery'>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<a class='unstyled-link' href='photo.php?pid=" . $row['photo_id'] . "'>";
                     echo "<div class='image-container'>";
@@ -64,6 +70,7 @@ if(!isset($_SESSION)) {
                     echo "</div>";
                     echo "</a>";
                 }
+                echo "</div>";
             }
             echo "</div>";
         ?>
