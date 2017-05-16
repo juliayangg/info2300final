@@ -45,32 +45,19 @@ p a{
 .dropdown {
     float: right;
     overflow: hidden;
-    /*padding: 20px 30px;*/
 }
 
 .dropdown .dropbtn {
-    font-size: 16px;  
-    margin: 20px 30px;  
+    font-size: 16px;    
     border: none;
     outline: none;
     color: white;
+    padding: 14px 16px;
     background-color: inherit;
     padding:0;
-    text-transform: uppercase;
-
-/*    float: right;
-    font-size: 16px;
-    color: #f8f8f8;
-    text-align: center;
-    padding: 20px 30px;
-    font-family: 'Montserrat';
-    text-transform: uppercase;
-    font-weight:500;
-    text-decoration: none;*/
-
 }
 
-.container a:hover, .dropdown:hover {
+.container a:hover, .dropdown:hover .dropbtn {
     background-color: #9c1717;
 }
 
@@ -409,7 +396,7 @@ a.unstyled-link:link, a.unstyled-link:visited, a.unstyled-link:hover, a.unstyled
 
 .album-container img {
     max-height: 100%;
-    width: 100%;
+    max-width: 100%;
 }
 
 .album-container:hover img {
