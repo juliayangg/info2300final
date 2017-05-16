@@ -61,7 +61,6 @@ if(!isset($_SESSION)) {
                 echo "</div>";
             } else {
                 $result = $mysqli->query("SELECT * FROM photos");
-                echo "<div class='gallery'>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<a class='unstyled-link' href='photo.php?pid=" . $row['photo_id'] . "'>";
                     echo "<div class='image-container'>";
@@ -70,7 +69,6 @@ if(!isset($_SESSION)) {
                     echo "</div>";
                     echo "</a>";
                 }
-                echo "</div>";
             }
             echo "</div>";
         ?>
