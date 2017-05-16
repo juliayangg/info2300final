@@ -48,7 +48,7 @@ if(!isset($_SESSION)) {
             echo "<div class='gallery'>";
             while ($photo_row = $photo_result->fetch_assoc()) {
                 echo "<div class='single-album-container'>";
-                echo "<img src=img/" . $photo_row['file_path'] . " alt='Cover Photo'>";
+                echo "<img src=img/" . $photo_row['file_path'] . " alt='Event Photo'>";
                 echo "</div>";
             }
             echo "</div>";
